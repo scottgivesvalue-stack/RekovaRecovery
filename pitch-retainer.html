@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rekova Recovery — Hotel Partnership Deck (Retainer Model)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #D32F2F;
+    --red-dark: #a82020;
+    --black: #000000;
+    --black-mid: #0a0a0a;
+    --black-card: #111111;
+    --white: #ffffff;
+    --off-white: #f0ede8;
+    --gray: rgba(255,255,255,0.55);
+    --border: rgba(255,255,255,0.08);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: var(--white);
+  }
+
+  .slide {
+    width: 1100px;
+    height: 680px;
+    margin: 0 auto;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* ---- TYPOGRAPHY ---- */
+  .display { font-family: 'Cormorant Garamond', serif; }
+  .caps { font-family: 'Bebas Neue', sans-serif; }
+  .label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: inline-block;
+    padding: 0.28rem 0.8rem;
+    border: 1px solid var(--red);
+    border-radius: 2px;
+    margin-bottom: 0.6rem;
+  }
+  .label-white {
+    color: rgba(255,255,255,0.5);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  /* ---- DECORATIVE ---- */
+  .slide-num {
+    position: absolute;
+    bottom: 2rem;
+    right: 2.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.18);
+  }
+  .red-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--red);
+  }
+  .red-bar-bottom {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 4px;
+    background: var(--red);
+  }
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .bg-radial {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(211,47,47,0.07) 0%, transparent 60%);
+  }
+  .watermark {
+    position: absolute;
+    bottom: -40px;
+    right: -20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14rem;
+    color: rgba(211,47,47,0.04);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+  }
+  .divider {
+    width: 50px;
+    height: 2px;
+    background: var(--red);
+    margin: 0.7rem 0;
+  }
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .logo-mark img {
+    height: 44px;
+    width: auto;
+  }
+
+  /* ---- SLIDE 1: COVER ---- */
+  .cover {
+    background: var(--black);
+    justify-content: center;
+  }
+  .cover-inner {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+  }
+  .cover-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.8rem;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-top: 0.8rem;
+  }
+  .cover-headline em { color: var(--red); font-style: italic; }
+  .cover-sub {
+    font-size: 0.92rem;
+    color: var(--gray);
+    max-width: 500px;
+    line-height: 1.6;
+    margin-top: 0.8rem;
+  }
+  .cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .cover-meta { font-size: 0.78rem; color: rgba(255,255,255,0.3); letter-spacing: 0.08em; }
+  .cover-tag {
+    background: var(--red);
+    color: var(--white);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+  }
+
+  /* ---- CONTENT SLIDES ---- */
+  .content {
+    padding: 1.8rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    overflow: hidden;
+  }
+  .slide-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .slide-title em { font-style: italic; color: var(--red); }
+  .slide-title strong { font-weight: 600; }
+  .body-text {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    max-width: 760px;
+    margin-bottom: 0.5rem;
+  }
+  .body-text strong { color: var(--white); font-weight: 600; }
+
+  /* ---- TWO COL ---- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-top: 0.6rem;
+  }
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
+    margin-top: 0.8rem;
+  }
+  .four-col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.9rem;
+    margin-top: 0.8rem;
+  }
+
+  /* ---- CARDS ---- */
+  .card {
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  .card-accent { border-top: 2px solid var(--red); }
+  .card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    color: var(--white);
+  }
+  .card p {
+    font-size: 0.78rem;
+    color: var(--gray);
+    line-height: 1.55;
+  }
+  .card .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: rgba(211,47,47,0.25);
+    margin-bottom: 0.2rem;
+    line-height: 1;
+  }
+  .card .icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
+
+  /* ---- PRICING ---- */
+  .price-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  .price-sub {
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+  .price-card {
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red);
+    border-radius: 4px;
+    padding: 1.1rem 1.4rem;
+  }
+  .price-card h4 {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+  .check-list {
+    list-style: none;
+    margin-top: 1rem;
+  }
+  .check-list li {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    padding: 0.28rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .check-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 700;
+  }
+  .check-list li strong { color: var(--white); }
+
+  /* ---- TABLE ---- */
+  .rev-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.8rem;
+    font-size: 0.82rem;
+  }
+  .rev-table th {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    padding: 0.4rem 0.8rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(211,47,47,0.3);
+  }
+  .rev-table td {
+    padding: 0.4rem 0.8rem;
+    color: rgba(255,255,255,0.75);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .rev-table td strong { color: var(--white); }
+  .rev-table tr.highlight td { background: rgba(211,47,47,0.06); color: var(--white); }
+  .rev-table td.green { color: #4CAF50; font-weight: 600; }
+
+  /* ---- STAT BOXES ---- */
+  .stat-box {
+    text-align: center;
+    padding: 0.9rem 0.8rem;
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .stat-box .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-box .stat-num span { color: var(--red); }
+  .stat-box .stat-label {
+    font-size: 0.68rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  /* ---- HIGHLIGHT BOX ---- */
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(211,47,47,0.12), rgba(211,47,47,0.04));
+    border: 1px solid rgba(211,47,47,0.3);
+    border-radius: 4px;
+    padding: 0.9rem 1.2rem;
+    margin-top: 0.8rem;
+  }
+  .highlight-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--white);
+  }
+  .highlight-box p em { color: var(--red); font-style: italic; }
+
+  /* ---- FOOTER BAR ---- */
+  .slide-footer {
+    margin-top: auto;
+    padding: 0.55rem 3.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .slide-footer span {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ---- PRINT ---- */
+  @media print {
+    body { background: white; }
+    .slide {
+      width: 100%;
+      page-break-after: always;
+      page-break-inside: avoid;
+      margin: 0;
+    }
+    @page { size: 1100px 680px; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SLIDE 1: COVER ==================== -->
+<div class="slide cover">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">R</div>
+  <div class="cover-inner">
+    <div>
+      <img src="rekova-logo.png" alt="Rekova Recovery" style="height:52px; width:auto; display:block;">
+    </div>
+    <div>
+      <div class="label">Hotel Partnership Deck</div>
+      <div class="cover-headline">
+        Premium Recovery.<br>
+        <em>Delivered to<br>Every Room.</em>
+      </div>
+      <p class="cover-sub">A turnkey in-room recovery amenity that elevates your guest experience, generates new revenue, and sets your property apart - with zero operational lift on your team.</p>
+    </div>
+    <div class="cover-footer">
+      <div>
+        <div class="cover-meta">REKOVA RECOVERY &nbsp;·&nbsp; REKOVARECOVERY.COM</div>
+        <div class="cover-meta" style="margin-top:0.3rem;">ST. PETERSBURG, FL &nbsp;·&nbsp; SERVING HOTELS NATIONWIDE</div>
+      </div>
+      <div class="cover-tag">Retainer Partnership Model</div>
+    </div>
+  </div>
+  <div class="slide-num">01 / 10</div>
+</div>
+
+<!-- ==================== SLIDE 2: THE PROBLEM ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">02</div>
+  <div class="content">
+    <div class="label">The Problem</div>
+    <div class="slide-title">Travelers Check In.<br><em>Their Recovery Doesn't.</em></div>
+    <div class="divider"></div>
+    <p class="body-text">Modern travelers - especially athletes, executives, and wellness-focused guests - rely on professional recovery tools every day at home. The moment they travel, that infrastructure disappears entirely.</p>
+    <div class="three-col" style="margin-top:2rem;">
+      <div class="card card-accent">
+        <div class="icon">✈️</div>
+        <h4>Depleted by Travel</h4>
+        <p>Long flights, time zone changes, hours on your feet. Travel breaks down the body and most hotels offer nothing to help guests recover.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="icon">🏥</div>
+        <h4>No Accessible Solutions</h4>
+        <p>Compression therapy, red light panels, and cold plunges exist - but they require a trip to a facility, an appointment, and shared equipment.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="icon">💰</div>
+        <h4>Missed Revenue</h4>
+        <p>Hotels already upsell room upgrades, spa treatments, and dining packages. A premium recovery amenity is a natural - and untapped - addition.</p>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <p>The demand for premium recovery while traveling exists everywhere. <em>The accessibility doesn't. Until now.</em></p>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">02 / 10</div>
+</div>
+
+<!-- ==================== SLIDE 3: THE SOLUTION ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">R</div>
+  <div class="content">
+    <div class="label">The Solution</div>
+    <div class="slide-title">Rekova Recovery.<br><em>The In-Room Recovery Suite.</em></div>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div>
+        <p class="body-text">Rekova delivers a complete, professional-grade recovery kit directly to your guest's hotel room - just like room service. No appointments. No shared facilities. No extra travel. Just recovery, ready when they arrive.</p>
+        <p class="body-text">Founded by <strong>Tyler Therrien</strong> after years in the recovery and wellness industry, Rekova was purpose-built to bridge the gap between elite recovery technology and the everyday traveler.</p>
+        <p class="body-text" style="margin-top:1rem;"><strong>We handle everything:</strong> delivery, setup, sanitation, and pickup. Your staff does nothing extra. Your guests get an experience they will remember.</p>
+      </div>
+      <div>
+        <ul class="check-list" style="margin-top:0;">
+          <li><strong>Delivered to the room</strong> - set up before check-in</li>
+          <li><strong>Professional-grade equipment</strong> used by elite athletes</li>
+          <li><strong>Fully private</strong> - no shared facilities or wait times</li>
+          <li><strong>Sanitized</strong> before and after every single use</li>
+          <li><strong>Picked up</strong> by our team when the guest is done</li>
+          <li><strong>Two package tiers</strong> - Standard Kit & Full Recovery Suite</li>
+          <li><strong>Curated local gift</strong> included with every kit</li>
+          <li><strong>Zero operational burden</strong> on hotel staff</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">03 / 10</div>
+</div>
+
+<!-- ==================== SLIDE 4: THE KIT ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="red-bar"></div>
+  <div class="content">
+    <div class="label">What's Included</div>
+    <div class="slide-title">Two Packages.<br><em>One Goal: Recovery.</em></div>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div>
+        <div style="margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid var(--border);">
+          <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.8rem;">Standard Recovery Kit</div>
+          <div class="four-col" style="gap:0.8rem; margin-top:0;">
+            <div class="card" style="padding:1.2rem;">
+              <div class="num" style="font-size:1.5rem;">01</div>
+              <h4 style="font-size:1rem;">Normatec Boots</h4>
+              <p style="font-size:0.75rem;">Pneumatic compression therapy</p>
+            </div>
+            <div class="card" style="padding:1.2rem;">
+              <div class="num" style="font-size:1.5rem;">02</div>
+              <h4 style="font-size:1rem;">Red Light Panel</h4>
+              <p style="font-size:0.75rem;">660nm + 850nm therapy</p>
+            </div>
+            <div class="card" style="padding:1.2rem;">
+              <div class="num" style="font-size:1.5rem;">03</div>
+              <h4 style="font-size:1rem;">Hyperice Gun</h4>
+              <p style="font-size:0.75rem;">Percussive massage therapy</p>
+            </div>
+            <div class="card" style="padding:1.2rem;">
+              <div class="num" style="font-size:1.5rem;">04</div>
+              <h4 style="font-size:1rem;">Local Gift</h4>
+              <p style="font-size:0.75rem;">Curated city surprise</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;">
+          <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:0.8rem;">Full Recovery Suite — Upgrade Tier</div>
+          <div class="card card-accent" style="padding:1.2rem; background: linear-gradient(135deg, #0d0000, #111);">
+            <p style="font-size:0.83rem; color:rgba(255,255,255,0.7);">Everything in the Standard Kit, <strong style="color:white;">plus a Cold Plunge</strong> delivered and set up in the room. Cold water immersion reduces inflammation, boosts circulation, and elevates mental clarity - the ultimate recovery experience.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding: 2rem; height:100%;">
+          <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:1rem;">Every Kit Also Includes</div>
+          <ul class="check-list" style="margin:0;">
+            <li>Sanitized equipment pre-delivered to room</li>
+            <li>Setup complete before guest arrival</li>
+            <li>Usage guide and instructions in room</li>
+            <li>Curated local gift - unique per city</li>
+            <li>Post-stay pickup by our team</li>
+            <li>Full equipment insurance coverage by Rekova</li>
+            <li>Onboarding materials & staff training guides</li>
+          </ul>
+          <div style="margin-top:1.5rem; padding:1rem; background:rgba(211,47,47,0.08); border-radius:4px; border:1px solid rgba(211,47,47,0.2);">
+            <p style="font-size:0.8rem; color:rgba(255,255,255,0.6);">Rekova carries full liability and insurance on all equipment. <strong style="color:white;">You take on zero risk.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">04 / 10</div>
+</div>
+
+<!-- ==================== SLIDE 5: HOW IT WORKS ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="content">
+    <div class="label">The Process</div>
+    <div class="slide-title">How It Works.<br><em>Effortless for Your Team.</em></div>
+    <div class="divider"></div>
+    <div class="four-col" style="margin-top:2rem;">
+      <div class="card card-accent">
+        <div class="num">01</div>
+        <h4>Guest Books</h4>
+        <p>Guest adds the Rekova Recovery Kit to their stay at booking - or at check-in via front desk pitch. Just like requesting a room upgrade.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">02</div>
+        <h4>We Deliver</h4>
+        <p>Rekova delivers, sanitizes, and fully sets up the kit in the room before the guest arrives. Zero effort from hotel staff.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">03</div>
+        <h4>Guest Recovers</h4>
+        <p>The guest enjoys a private, professional-grade recovery suite in their room - on their schedule, at their pace.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">04</div>
+        <h4>We Pick Up</h4>
+        <p>When the guest checks out, Rekova retrieves and re-sanitizes all equipment. Your housekeeping team does nothing extra.</p>
+      </div>
+    </div>
+    <div class="two-col" style="margin-top:2rem;">
+      <div class="highlight-box" style="margin-top:0;">
+        <p style="font-size:1.1rem;">Your front desk pitches it to <em>every guest at check-in</em> - just like they would a dining reservation or spa package.</p>
+      </div>
+      <div class="card" style="padding:1.5rem;">
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.8rem;">Multi-Night Packages Available</div>
+        <ul class="check-list" style="margin:0;">
+          <li><strong>Single Night</strong> - $79 to $99</li>
+          <li><strong>2-Night Weekend Package</strong> - $139 to $169</li>
+          <li><strong>3-Night Stay Package</strong> - $189 to $229</li>
+          <li><strong>Full Recovery Suite (Cold Plunge)</strong> - $119 to $149/night</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">05 / 10</div>
+</div>
+
+<!-- ==================== SLIDE 6: PRICING MODEL ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="red-bar"></div>
+  <div class="content">
+    <div class="label">Partnership Model</div>
+    <div class="slide-title">The Retainer Model.<br><em>Simple. Predictable. Profitable.</em></div>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div>
+        <div class="price-card" style="margin-bottom:0.5rem;">
+          <h4>One-Time Onboarding Fee</h4>
+          <div class="price-big">$999</div>
+          <div class="price-sub">Per property · One-time · Covers shipping & setup</div>
+          <ul class="check-list" style="margin-top:0.3rem;">
+            <li>Full equipment delivery to property</li>
+            <li>Complete onboarding materials</li>
+            <li>Staff training guides included</li>
+            <li>Front desk pitch scripts & signage</li>
+          </ul>
+        </div>
+        <div class="price-card">
+          <h4>Monthly Retainer</h4>
+          <div class="price-big">$1,250 <span style="font-size:1.5rem; color:var(--gray);">/ kit</span></div>
+          <div class="price-sub">Per kit · Per month · 2-year agreement</div>
+          <ul class="check-list" style="margin-top:0.3rem;">
+            <li>All equipment maintenance by Rekova</li>
+            <li>Ongoing sanitization & quality control</li>
+            <li>Equipment replacement if needed</li>
+            <li>Full liability & insurance coverage</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="padding:1rem; margin-bottom:0.5rem;">
+          <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.5rem;">Recommended Starting Package</div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8rem; text-align:center;">
+            <div>
+              <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--white);">3</div>
+              <div style="font-size:0.7rem; color:var(--gray); text-transform:uppercase; letter-spacing:0.1em;">Kits</div>
+              <div style="font-size:0.85rem; color:var(--red); font-weight:600; margin-top:0.2rem;">$3,750/mo</div>
+            </div>
+            <div style="border-left:1px solid var(--border); border-right:1px solid var(--border);">
+              <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--white);">4</div>
+              <div style="font-size:0.7rem; color:var(--gray); text-transform:uppercase; letter-spacing:0.1em;">Kits</div>
+              <div style="font-size:0.85rem; color:var(--red); font-weight:600; margin-top:0.2rem;">$5,000/mo</div>
+            </div>
+            <div>
+              <div style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--white);">5</div>
+              <div style="font-size:0.7rem; color:var(--gray); text-transform:uppercase; letter-spacing:0.1em;">Kits</div>
+              <div style="font-size:0.85rem; color:var(--red); font-weight:600; margin-top:0.2rem;">$6,250/mo</div>
+            </div>
+          </div>
+        </div>
+        <div class="highlight-box" style="margin-top:0;">
+          <p style="font-size:1rem;"><em>You keep 100% of every rental.</em> The monthly retainer is your only cost. Rent each kit for $79-$129/night and your breakeven is covered in just a few bookings per month.</p>
+        </div>
+        <div style="margin-top:0.5rem; font-size:0.72rem; color:rgba(255,255,255,0.3); text-align:center;">2-Year Partnership Agreement · Equipment Insured by Rekova · Lock In Today's Rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">06 / 10</div>
+</div>
+
+<!-- ==================== SLIDE 7: REVENUE PROJECTIONS ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="content">
+    <div class="label">Revenue Projections</div>
+    <div class="slide-title">Your Upside Is<br><em>Entirely Yours to Keep.</em></div>
+    <div class="divider"></div>
+    <p class="body-text">These projections are based on <strong>$99/night</strong> average rental rate with front desk promotion at every check-in. You retain 100% of all guest rental revenue above the monthly retainer.</p>
+
+    <table class="rev-table">
+      <thead>
+        <tr>
+          <th>Kits Deployed</th>
+          <th>Monthly Retainer</th>
+          <th>30% Occupancy</th>
+          <th>50% Occupancy</th>
+          <th>70% Occupancy</th>
+          <th>Net at 70%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>3 Kits</strong></td>
+          <td>$3,750/mo</td>
+          <td>$2,673</td>
+          <td>$4,455</td>
+          <td>$6,237</td>
+          <td class="green">+$2,487</td>
+        </tr>
+        <tr class="highlight">
+          <td><strong>4 Kits</strong></td>
+          <td>$5,000/mo</td>
+          <td>$3,564</td>
+          <td>$5,940</td>
+          <td>$8,316</td>
+          <td class="green">+$3,316</td>
+        </tr>
+        <tr>
+          <td><strong>5 Kits</strong></td>
+          <td>$6,250/mo</td>
+          <td>$4,455</td>
+          <td>$7,425</td>
+          <td>$10,395</td>
+          <td class="green">+$4,145</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="three-col" style="margin-top:1.5rem;">
+      <div class="stat-box">
+        <div class="stat-num"><span>~</span>8</div>
+        <div class="stat-label">Rentals to Break Even<br>(3 kits @ $99)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num"><span>$</span>129</div>
+        <div class="stat-label">Max Nightly Rate<br>(Full Recovery Suite)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num"><span>$</span>229</div>
+        <div class="stat-label">3-Night Weekend Package<br>Max Rate</div>
+      </div>
+    </div>
+    <p style="font-size:0.7rem; color:rgba(255,255,255,0.25); margin-top:1rem;">*Projections based on 30 available nights/month per kit at $99 avg. Actual results may vary based on property type, location, and front desk conversion. Revenue shown is gross rental income before any hotel-side costs.</p>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">07 / 10</div>
+</div>
+
+<!-- ==================== SLIDE 8: TEAM PACKAGE ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="red-bar"></div>
+  <div class="content">
+    <div class="label">Add-On Opportunity</div>
+    <div class="slide-title">The Team Package.<br><em>For Groups. For Athletes. For Champions.</em></div>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div>
+        <p class="body-text">When professional sports teams, collegiate programs, or tournament groups stay at your property, Rekova offers a <strong>Team Recovery Package</strong> - delivering full recovery suites for an entire roster during their stay.</p>
+        <p class="body-text">Most teams do not travel with their own recovery equipment. Rekova brings it to them, directly at their hotel, without any additional effort from your team.</p>
+        <div style="margin-top:0.6rem;">
+          <div class="price-card">
+            <h4>Team Package Rate</h4>
+            <div class="price-big">$999<span style="font-size:1.5rem;color:var(--gray);">/night</span></div>
+            <div class="price-sub">Full roster recovery · Starting price · Custom quotes available</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:1rem;">Ideal For</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem;">
+          <div class="card card-accent" style="padding:0.7rem;"><div class="icon">⚾</div><h4 style="font-size:0.9rem;">MLB Teams</h4></div>
+          <div class="card card-accent" style="padding:0.7rem;"><div class="icon">🏒</div><h4 style="font-size:0.9rem;">NHL Teams</h4></div>
+          <div class="card card-accent" style="padding:0.7rem;"><div class="icon">🏀</div><h4 style="font-size:0.9rem;">NBA Teams</h4></div>
+          <div class="card card-accent" style="padding:0.7rem;"><div class="icon">🎓</div><h4 style="font-size:0.9rem;">NCAA Programs</h4></div>
+          <div class="card card-accent" style="padding:0.7rem;"><div class="icon">🏆</div><h4 style="font-size:0.9rem;">Tournament Groups</h4></div>
+          <div class="card card-accent" style="padding:0.7rem;"><div class="icon">🏃</div><h4 style="font-size:0.9rem;">Race Weekends</h4></div>
+        </div>
+        <div class="highlight-box" style="margin-top:0.5rem;">
+          <p style="font-size:0.9rem;">A team stay can generate <em>thousands in additional revenue</em> over a single road trip. No upfront cost to the hotel.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">08 / 10</div>
+</div>
+
+<!-- ==================== SLIDE 9: WHY PARTNER ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="content">
+    <div class="label">Why Rekova</div>
+    <div class="slide-title">What Your Property<br><em>Gains From Day One.</em></div>
+    <div class="divider"></div>
+    <div class="three-col" style="margin-top:1.5rem;">
+      <div class="card card-accent">
+        <div class="num">01</div>
+        <h4>New Revenue Stream</h4>
+        <p>100% of guest rental fees stay with your property. Rekova's retainer covers everything on our end. Your breakeven is just a handful of bookings per month.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">02</div>
+        <h4>Zero Operational Lift</h4>
+        <p>Rekova handles all delivery, setup, sanitation, and pickup. Your front desk simply pitches the option at check-in. No training on equipment required.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">03</div>
+        <h4>Zero Risk</h4>
+        <p>Rekova provides and insures all equipment. Your property carries no liability. We manage all equipment quality, repairs, and replacements.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">04</div>
+        <h4>Competitive Differentiation</h4>
+        <p>Be the first property in your market to offer a true in-room recovery suite. A memorable amenity that drives reviews, repeat bookings, and press coverage.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">05</div>
+        <h4>Athlete & Wellness Market</h4>
+        <p>Capture high-value guests: endurance athletes, executives, wellness travelers, and sports teams - segments with strong spending power and loyalty.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">06</div>
+        <h4>Ongoing Support</h4>
+        <p>Rekova provides onboarding materials, front desk scripts, in-room collateral, and ongoing account support to maximize your conversion rate.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">09 / 10</div>
+</div>
+
+<!-- ==================== SLIDE 10: NEXT STEPS ==================== -->
+<div class="slide" style="background: var(--black);">
+  <div class="bg-grid"></div>
+  <div class="bg-radial" style="background: radial-gradient(ellipse at 30% 50%, rgba(211,47,47,0.1) 0%, transparent 60%);"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">R</div>
+  <div class="content" style="justify-content:center; text-align:center; align-items:center;">
+    <img src="rekova-logo.png" alt="Rekova Recovery" style="height:50px; width:auto; margin-bottom:1rem;">
+    <div class="label label-white">Ready to Partner</div>
+    <div class="slide-title" style="text-align:center; font-size:2.8rem;">Let's Get Your Property<br><em>Recovery-Ready.</em></div>
+    <div class="divider" style="margin:0.6rem auto;"></div>
+    <p class="body-text" style="text-align:center; max-width:600px; margin:0 auto 1rem;">Starting a Rekova partnership is simple. We take care of all logistics, shipping, and setup. Your guests experience elite recovery from day one. Let's talk.</p>
+    <div style="display:flex; gap:2rem; justify-content:center; margin-bottom:1.5rem;">
+      <div style="text-align:center;">
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Email</div>
+        <div style="font-size:1rem; color:var(--white);">rekovarecovery@gmail.com</div>
+      </div>
+      <div style="width:1px; background:var(--border);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Website</div>
+        <div style="font-size:1rem; color:var(--white);">rekovarecovery.com</div>
+      </div>
+      <div style="width:1px; background:var(--border);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Instagram</div>
+        <div style="font-size:1rem; color:var(--white);">@rekovarecovery</div>
+      </div>
+    </div>
+    <div class="cover-tag" style="display:inline-block;">$999 Onboarding · $1,250/mo Per Kit · 2-Year Agreement · You Keep All Rental Revenue</div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential · 2026</span>
+    <span>rekovarecovery.com</span>
+  </div>
+  <div class="slide-num">10 / 10</div>
+</div>
+
+</body>
+</html>

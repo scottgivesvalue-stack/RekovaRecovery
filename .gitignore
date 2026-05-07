@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Generated PDFs
+*.pdf
+
+# Videos (large binary files)
+*.mp4
+
+# Raw/working assets
+rekova-logo-raw.png
+
+# Dev docs
+BRAND_GUIDELINES.md
+CUSTOMIZATION.md
+DEPLOYMENT.md
+FILE_INDEX.md
+QUICKREF.md
+START_HERE.md
+README.md

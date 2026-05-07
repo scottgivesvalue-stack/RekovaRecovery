@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rekova Recovery — Hotel Partnership Deck (Revenue Share Model)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #D32F2F;
+    --red-dark: #a82020;
+    --black: #000000;
+    --black-mid: #0a0a0a;
+    --black-card: #111111;
+    --white: #ffffff;
+    --off-white: #f0ede8;
+    --gray: rgba(255,255,255,0.55);
+    --border: rgba(255,255,255,0.08);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: var(--white);
+  }
+
+  .slide {
+    width: 1100px;
+    height: 680px;
+    margin: 0 auto;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* ---- TYPOGRAPHY ---- */
+  .display { font-family: 'Cormorant Garamond', serif; }
+  .caps { font-family: 'Bebas Neue', sans-serif; }
+  .label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: inline-block;
+    padding: 0.28rem 0.8rem;
+    border: 1px solid var(--red);
+    border-radius: 2px;
+    margin-bottom: 0.6rem;
+  }
+  .label-white {
+    color: rgba(255,255,255,0.5);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  /* ---- DECORATIVE ---- */
+  .slide-num {
+    position: absolute;
+    bottom: 2rem;
+    right: 2.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.18);
+  }
+  .red-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--red);
+  }
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .bg-radial {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 50%, rgba(211,47,47,0.07) 0%, transparent 60%);
+  }
+  .watermark {
+    position: absolute;
+    bottom: -40px;
+    right: -20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14rem;
+    color: rgba(211,47,47,0.04);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+  }
+  .divider {
+    width: 50px;
+    height: 2px;
+    background: var(--red);
+    margin: 0.7rem 0;
+  }
+
+  /* ---- COVER ---- */
+  .cover {
+    background: var(--black);
+    justify-content: center;
+  }
+  .cover-inner {
+    position: relative;
+    z-index: 2;
+    padding: 3rem 5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+  }
+  .cover-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.8rem;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-top: 0.8rem;
+  }
+  .cover-headline em { color: var(--red); font-style: italic; }
+  .cover-sub {
+    font-size: 0.92rem;
+    color: var(--gray);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-top: 0.8rem;
+  }
+  .cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .cover-meta { font-size: 0.78rem; color: rgba(255,255,255,0.3); letter-spacing: 0.08em; }
+  .cover-tag {
+    background: var(--red);
+    color: var(--white);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+  }
+
+  /* ---- CONTENT SLIDES ---- */
+  .content {
+    padding: 1.8rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    overflow: hidden;
+  }
+  .slide-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .slide-title em { font-style: italic; color: var(--red); }
+  .slide-title strong { font-weight: 600; }
+  .body-text {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    max-width: 760px;
+    margin-bottom: 0.5rem;
+  }
+  .body-text strong { color: var(--white); font-weight: 600; }
+
+  /* ---- GRIDS ---- */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-top: 0.6rem;
+  }
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
+    margin-top: 0.8rem;
+  }
+  .four-col {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.9rem;
+    margin-top: 0.8rem;
+  }
+
+  /* ---- CARDS ---- */
+  .card {
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  .card-accent { border-top: 2px solid var(--red); }
+  .card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    color: var(--white);
+  }
+  .card p {
+    font-size: 0.78rem;
+    color: var(--gray);
+    line-height: 1.55;
+  }
+  .card .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: rgba(211,47,47,0.25);
+    margin-bottom: 0.2rem;
+    line-height: 1;
+  }
+  .card .icon { font-size: 1.4rem; margin-bottom: 0.3rem; }
+
+  /* ---- PRICING ---- */
+  .price-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  .price-sub {
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+  .price-card {
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--red);
+    border-radius: 4px;
+    padding: 1.1rem 1.4rem;
+  }
+  .price-card h4 {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+  .check-list {
+    list-style: none;
+    margin-top: 1rem;
+  }
+  .check-list li {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    padding: 0.28rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .check-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-weight: 700;
+  }
+  .check-list li strong { color: var(--white); }
+
+  /* ---- TABLE ---- */
+  .rev-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.8rem;
+    font-size: 0.82rem;
+  }
+  .rev-table th {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    padding: 0.25rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(211,47,47,0.3);
+  }
+  .rev-table td {
+    padding: 0.25rem 0.5rem;
+    color: rgba(255,255,255,0.75);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .rev-table td strong { color: var(--white); }
+  .rev-table tr.highlight td { background: rgba(211,47,47,0.06); color: var(--white); }
+  .rev-table td.green { color: #4CAF50; font-weight: 600; }
+  .rev-table td.red-val { color: var(--red); font-weight: 600; }
+
+  /* ---- STAT BOXES ---- */
+  .stat-box {
+    text-align: center;
+    padding: 0.6rem 0.7rem;
+    background: #0f0f0f;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .stat-box .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.9rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .stat-box .stat-num span { color: var(--red); }
+  .stat-box .stat-label {
+    font-size: 0.68rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  /* ---- HIGHLIGHT BOX ---- */
+  .highlight-box {
+    background: linear-gradient(135deg, rgba(211,47,47,0.12), rgba(211,47,47,0.04));
+    border: 1px solid rgba(211,47,47,0.3);
+    border-radius: 4px;
+    padding: 0.9rem 1.2rem;
+    margin-top: 0.8rem;
+  }
+  .highlight-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--white);
+  }
+  .highlight-box p em { color: var(--red); font-style: italic; }
+
+  /* ---- SPLIT VISUAL ---- */
+  .split-bar {
+    display: flex;
+    height: 44px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0.6rem 0;
+  }
+  .split-bar .rekova {
+    background: var(--red);
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+  }
+  .split-bar .hotel {
+    background: #1e1e1e;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    border: 1px solid var(--border);
+  }
+
+  /* ---- FOOTER BAR ---- */
+  .slide-footer {
+    margin-top: auto;
+    padding: 0.55rem 3.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .slide-footer span {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ---- SLIDE-SPECIFIC OVERRIDES ---- */
+  /* Slide 2: check-list + highlight-box are tight */
+  #s2 .content { justify-content: flex-start; padding-top: 1rem; padding-bottom: 0.5rem; }
+  #s2 .slide-title { font-size: 2.2rem; margin-bottom: 0.2rem; }
+  #s2 .divider { margin: 0.3rem 0; }
+  #s2 .body-text { font-size: 0.82rem; margin-bottom: 0.2rem; line-height: 1.5; }
+  #s2 .two-col { margin-top: 0.3rem; gap: 1.5rem; }
+  #s2 .check-list { margin-top: 0; }
+  #s2 .check-list li { padding: 0.15rem 0; padding-left: 1.2rem; font-size: 0.77rem; }
+  #s2 .highlight-box { padding: 0.5rem 0.9rem; margin-top: 0.35rem; }
+  #s2 .highlight-box p { font-size: 0.8rem; line-height: 1.3; }
+  /* Slide 8: table + stat boxes need to fit */
+  #s8 .content { justify-content: flex-start; padding-top: 1.2rem; padding-bottom: 0.4rem; }
+  #s8 .slide-title { font-size: 2.2rem; }
+  #s8 .divider { margin: 0.4rem 0; }
+  #s8 .body-text { margin-bottom: 0.3rem; }
+  #s8 .rev-table { font-size: 0.78rem; margin-top: 0.3rem; }
+  #s8 .rev-table th { padding: 0.18rem 0.4rem; }
+  #s8 .rev-table td { padding: 0.18rem 0.4rem; }
+  #s8 .three-col { margin-top: 0.25rem; gap: 0.6rem; }
+  #s8 .stat-box { padding: 0.45rem 0.5rem; }
+  #s8 .stat-box .stat-num { font-size: 1.7rem; }
+  #s8 .stat-box .stat-label { font-size: 0.63rem; margin-top: 0.15rem; }
+
+  /* ---- PRINT ---- */
+  @media print {
+    body { background: white; }
+    .slide {
+      width: 100%;
+      page-break-after: always;
+      page-break-inside: avoid;
+      margin: 0;
+    }
+    @page { size: 1100px 680px; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== SLIDE 1: COVER ==================== -->
+<div class="slide cover">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">R</div>
+  <div class="cover-inner">
+    <div>
+      <img src="rekova-logo.png" alt="Rekova Recovery" style="height:52px; width:auto; display:block;">
+    </div>
+    <div>
+      <div class="label">Hotel Partnership Deck</div>
+      <div class="cover-headline">
+        Grow Together.<br>
+        <em>Earn Together.<br>Every Stay.</em>
+      </div>
+      <p class="cover-sub">A selective, performance-based partnership where Rekova and your property share in the success of every guest recovery experience - with no monthly retainer and no ongoing cost to you.</p>
+    </div>
+    <div class="cover-footer">
+      <div>
+        <div class="cover-meta">REKOVA RECOVERY &nbsp;·&nbsp; REKOVARECOVERY.COM</div>
+        <div class="cover-meta" style="margin-top:0.3rem;">ST. PETERSBURG, FL &nbsp;·&nbsp; SERVING HOTELS NATIONWIDE</div>
+      </div>
+      <div class="cover-tag">Revenue Share Partnership Model</div>
+    </div>
+  </div>
+  <div class="slide-num">01 / 09</div>
+</div>
+
+<!-- ==================== SLIDE 2: A SELECTIVE PARTNERSHIP ==================== -->
+<div class="slide" id="s2">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">02</div>
+  <div class="content">
+    <div class="label">By Invitation Only</div>
+    <div class="slide-title">This Model Is<br><em>Not for Everyone.</em></div>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div>
+        <p class="body-text">The Rekova Revenue Share model is a <strong>selective partnership</strong>. We evaluate every property before presenting this option. Not every hotel qualifies - and that is by design.</p>
+        <p class="body-text">This model works best when both sides are aligned and fully committed. We bring the equipment, the branding, the delivery infrastructure, and the marketing. <strong>You bring the guests, the visibility, and the front-line commitment to promotion.</strong></p>
+        <p class="body-text">If you are receiving this deck, Rekova has already identified your property as a strong fit.</p>
+      </div>
+      <div>
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.4rem;">Ideal Property Profile</div>
+        <ul class="check-list" style="margin:0;">
+          <li><strong>Boutique or lifestyle hotel</strong> with a wellness-aligned guest base</li>
+          <li><strong>Resort or full-service property</strong> with gym, spa, or club amenities</li>
+          <li><strong>Hotel with club/gym memberships</strong> - Rekova can integrate into membership</li>
+          <li><strong>High front desk conversion</strong> - team actively pitches amenities at check-in</li>
+          <li><strong>Premium positioning</strong> - property values experiential, memorable stays</li>
+          <li><strong>Sports team or tournament market</strong> - recurring group recovery demand</li>
+        </ul>
+        <div class="highlight-box" style="margin-top:0.6rem;">
+          <p style="font-size:0.85rem;"><em>This model is presented only when we believe the partnership can win at scale.</em> It is not our default offer.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">02 / 09</div>
+</div>
+
+<!-- ==================== SLIDE 3: THE PROBLEM ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">03</div>
+  <div class="content">
+    <div class="label">The Problem</div>
+    <div class="slide-title">Travelers Check In.<br><em>Their Recovery Doesn't.</em></div>
+    <div class="divider"></div>
+    <p class="body-text">Modern travelers rely on professional recovery tools every day at home. The moment they travel, that infrastructure disappears entirely. Hotels have spas and gyms - but nothing designed around targeted, private, in-room recovery.</p>
+    <div class="three-col" style="margin-top:0.6rem;">
+      <div class="card card-accent">
+        <div class="icon">✈️</div>
+        <h4>Depleted by Travel</h4>
+        <p>Long flights, time zone changes, hours on your feet. Travel breaks down the body - and most hotels offer nothing to address it specifically.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="icon">🏥</div>
+        <h4>No In-Room Solution</h4>
+        <p>Compression therapy, red light panels, and cold plunges exist - but require a separate trip, shared equipment, and scheduled appointments.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="icon">💰</div>
+        <h4>Untapped Revenue</h4>
+        <p>Hotels upsell rooms, dining, and spa packages - but a professional recovery amenity is a natural, high-margin addition that almost no property offers.</p>
+      </div>
+    </div>
+    <div class="highlight-box">
+      <p>The demand is everywhere. The accessible, private, in-room solution exists nowhere. <em>That is what Rekova solves.</em></p>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">03 / 09</div>
+</div>
+
+<!-- ==================== SLIDE 4: THE SOLUTION ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">R</div>
+  <div class="content">
+    <div class="label">The Solution</div>
+    <div class="slide-title">Rekova Recovery.<br><em>The In-Room Recovery Suite.</em></div>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div>
+        <p class="body-text">Rekova delivers a complete, professional-grade recovery kit directly to your guest's room - just like room service. No appointments. No shared facilities. No extra travel.</p>
+        <p class="body-text">Founded by <strong>Tyler Therrien</strong>, Rekova was built to bridge the gap between elite recovery technology and the everyday traveler. We handle everything: delivery, setup, sanitation, and pickup. Your staff does nothing extra.</p>
+        <div class="highlight-box" style="margin-top:0.6rem;">
+          <p style="font-size:0.88rem;"><em>Your guests experience it. You earn from it.</em> Every single booking.</p>
+        </div>
+      </div>
+      <div>
+        <ul class="check-list" style="margin-top:0;">
+          <li><strong>Delivered to the room</strong> - set up before check-in</li>
+          <li><strong>Professional-grade equipment</strong> used by elite athletes</li>
+          <li><strong>Fully private</strong> - no shared facilities or wait times</li>
+          <li><strong>Sanitized</strong> before and after every single use</li>
+          <li><strong>Picked up</strong> by our team when the guest is done</li>
+          <li><strong>Two package tiers</strong> - Standard Kit & Full Recovery Suite</li>
+          <li><strong>Curated local gift</strong> included with every kit</li>
+          <li><strong>Zero operational burden</strong> on hotel staff</li>
+          <li><strong>Full equipment insurance</strong> carried by Rekova</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">04 / 09</div>
+</div>
+
+<!-- ==================== SLIDE 5: THE MODEL ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="red-bar"></div>
+  <div class="content">
+    <div class="label">The Revenue Share Model</div>
+    <div class="slide-title">One Fee. Then We<br><em>Split Every Rental. Forever.</em></div>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div>
+        <div class="price-card" style="margin-bottom:0.5rem;">
+          <h4>One-Time Onboarding Fee</h4>
+          <div class="price-big">$2,500</div>
+          <div class="price-sub">Per property · One-time · No monthly retainer ever</div>
+          <ul class="check-list" style="margin-top:0.3rem;">
+            <li>Full equipment delivery and setup</li>
+            <li>Complete onboarding materials and staff training</li>
+            <li>All in-room marketing collateral included</li>
+            <li>Front desk pitch scripts and signage</li>
+            <li>Digital display assets for hotel screens</li>
+            <li>Featured placement on rekovarecovery.com</li>
+          </ul>
+        </div>
+        <div style="padding:0.7rem; background:#0f0f0f; border:1px solid var(--border); border-radius:4px; font-size:0.8rem; color:rgba(255,255,255,0.4);">
+          After the one-time fee, there are <strong style="color:var(--white);">no monthly charges, no retainers, and no recurring costs</strong> to your property. You only share revenue when a guest books.
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.8rem;">Revenue Split — Every Guest Rental</div>
+        <div class="split-bar">
+          <div class="rekova">REKOVA — 80%</div>
+          <div class="hotel">YOU — 20%</div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:0.5rem;">
+          <div class="stat-box">
+            <div class="stat-num" style="font-size:2.2rem; color:var(--red);">80%</div>
+            <div class="stat-label">Rekova's Share<br>Covers operations + equipment</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="font-size:2.2rem; color:var(--white);">20%</div>
+            <div class="stat-label">Hotel's Share<br>Passive income, every booking</div>
+          </div>
+        </div>
+        <div class="highlight-box" style="margin-top:0.5rem;">
+          <p style="font-size:0.9rem;">At <em>$99/night</em> - your property earns $19.80 per rental. At scale, this compounds into meaningful passive revenue with zero ongoing work.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">05 / 09</div>
+</div>
+
+<!-- ==================== SLIDE 6: MARKETING COMMITMENT ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">06</div>
+  <div class="content">
+    <div class="label">What Rekova Provides</div>
+    <div class="slide-title">We Are Front and Center<br><em>at Your Property.</em></div>
+    <div class="divider"></div>
+    <p class="body-text">In the Revenue Share model, <strong>Rekova's marketing presence at your property is non-negotiable.</strong> Because we only earn when you book, we invest heavily in driving those bookings. Here is exactly what we bring:</p>
+    <div class="three-col" style="margin-top:0.6rem;">
+      <div class="card card-accent">
+        <div class="icon">📱</div>
+        <h4>Digital Upsell Sequences</h4>
+        <p>Branded email and SMS sequences sent to guests pre-arrival with direct Rekova booking links. Frictionless add-to-stay in seconds.</p>
+      </div>
+      </div>
+      <div class="card card-accent">
+        <div class="icon">🖼️</div>
+        <h4>In-Room Marketing</h4>
+        <p>Professionally designed tent cards, QR code cards, and leave-behind materials placed in every room - driving self-serve bookings at any hour.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="icon">📺</div>
+        <h4>Digital Display Assets</h4>
+        <p>Custom Rekova digital display content for screens in lobbies, elevator banks, gyms, and common areas around the hotel.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="icon">🌐</div>
+        <h4>Featured on Our Website</h4>
+        <p>Your property is listed as a Rekova partner hotel on rekovarecovery.com - driving wellness travelers directly to your booking page.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="icon">🛎️</div>
+        <h4>Front Desk Display</h4>
+        <p>A branded Rekova display at check-in prompts front desk staff to pitch the recovery kit to every arriving guest during the check-in conversation.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="icon">📣</div>
+        <h4>Social & PR Support</h4>
+        <p>Co-branded content for Rekova's social channels featuring your property - amplifying your reach to Rekova's wellness and athlete audience.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">06 / 09</div>
+</div>
+
+<!-- ==================== SLIDE 7: CLUB / GYM INTEGRATION ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">07</div>
+  <div class="content">
+    <div class="label">Membership Integration</div>
+    <div class="slide-title">Plug Into Your Club<br><em>or Gym Membership.</em></div>
+    <div class="divider"></div>
+    <div class="two-col">
+      <div>
+        <p class="body-text">For properties with an existing <strong>club membership, gym membership, or wellness program</strong>, Rekova can be fully integrated as an add-on benefit - offering a built-in upsell and a direct revenue share for every member who books.</p>
+        <p class="body-text">Members already value premium wellness. Adding Rekova Recovery to the membership ecosystem - even as an optional paid upgrade - creates a natural, frictionless booking path that converts at a higher rate.</p>
+        <div class="highlight-box" style="margin-top:0.6rem;">
+          <p style="font-size:0.9rem;"><em>Integrate the cost into the membership. We split the revenue. Your members get elite recovery. Everyone wins.</em></p>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:1rem;">Integration Options</div>
+        <div class="card card-accent" style="margin-bottom:0.5rem;">
+          <h4>Add-On to Membership</h4>
+          <p>Rekova is offered as a paid upgrade within the membership - $X per recovery session. The membership fee structure absorbs the add-on, and Rekova splits revenue per booking at the standard 80/20 rate.</p>
+        </div>
+        <div class="card card-accent" style="margin-bottom:0.5rem;">
+          <h4>Bundled Membership Tier</h4>
+          <p>Create a "Recovery Member" tier that includes monthly or quarterly Rekova sessions. Increased membership fee, shared revenue, elevated perceived value for the property.</p>
+        </div>
+        <div class="card card-accent">
+          <h4>Spa & Recovery Package</h4>
+          <p>Bundle Rekova with existing spa treatments or wellness offerings. A premium combined package that drives higher per-guest spend and stronger split revenue.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">07 / 09</div>
+</div>
+
+<!-- ==================== SLIDE 8: WHY PARTNER ==================== -->
+<div class="slide">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+  <div class="content">
+    <div class="label">Why Rekova</div>
+    <div class="slide-title">What Your Property<br><em>Gains From Day One.</em></div>
+    <div class="divider"></div>
+    <div class="three-col" style="margin-top:0.6rem;">
+      <div class="card card-accent">
+        <div class="num">01</div>
+        <h4>Passive Revenue Stream</h4>
+        <p>You earn 20% of every rental, permanently, with no ongoing investment. The onboarding fee is the only cost your property ever pays.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">02</div>
+        <h4>Rekova Invests in You</h4>
+        <p>We provide in-room marketing, digital displays, pre-arrival email sequences, website features, and front desk signage - all at our cost, all driving bookings.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">03</div>
+        <h4>Zero Operational Lift</h4>
+        <p>Rekova handles all delivery, setup, sanitation, and pickup. No training on equipment required. Your front desk simply introduces it at check-in.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">04</div>
+        <h4>Zero Equipment Risk</h4>
+        <p>Rekova provides and insures all equipment. Your property carries no liability. We manage all quality control, repairs, and replacements.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">05</div>
+        <h4>Competitive Differentiation</h4>
+        <p>Be the first property in your market with a true in-room recovery suite. A memorable experience that drives reviews, press, and repeat bookings.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="num">06</div>
+        <h4>Aligned Incentives</h4>
+        <p>Rekova only earns when you earn. We are as motivated as you are to drive bookings. This is a true partnership built on shared performance.</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential</span>
+    <span>Hotel Partnership Deck 2026</span>
+  </div>
+  <div class="slide-num">08 / 09</div>
+</div>
+
+<!-- ==================== SLIDE 11: NEXT STEPS ==================== -->
+<div class="slide" style="background: var(--black);">
+  <div class="bg-grid"></div>
+  <div class="bg-radial" style="background: radial-gradient(ellipse at 30% 50%, rgba(211,47,47,0.1) 0%, transparent 60%);"></div>
+  <div class="red-bar"></div>
+  <div class="watermark">R</div>
+  <div class="content" style="justify-content:center; text-align:center; align-items:center;">
+    <img src="rekova-logo.png" alt="Rekova Recovery" style="height:50px; width:auto; margin-bottom:1rem;">
+    <div class="label label-white">Ready to Partner</div>
+    <div class="slide-title" style="text-align:center; font-size:2.8rem;">Let's Build Something<br><em>Worth Talking About.</em></div>
+    <div class="divider" style="margin:0.6rem auto;"></div>
+    <p class="body-text" style="text-align:center; max-width:600px; margin:0 auto 1rem;">You have been selected for the Revenue Share model because we believe your property is the right fit. One conversation is all it takes to get your guests recovering from day one. Let's talk.</p>
+    <div style="display:flex; gap:2rem; justify-content:center; margin-bottom:1.5rem;">
+      <div style="text-align:center;">
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Email</div>
+        <div style="font-size:1rem; color:var(--white);">rekovarecovery@gmail.com</div>
+      </div>
+      <div style="width:1px; background:var(--border);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Website</div>
+        <div style="font-size:1rem; color:var(--white);">rekovarecovery.com</div>
+      </div>
+      <div style="width:1px; background:var(--border);"></div>
+      <div style="text-align:center;">
+        <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--red); margin-bottom:0.5rem;">Instagram</div>
+        <div style="font-size:1rem; color:var(--white);">@rekovarecovery</div>
+      </div>
+    </div>
+    <div class="cover-tag" style="display:inline-block;">$2,500 Onboarding · 80/20 Revenue Split · No Monthly Fees · Selective Partnership</div>
+  </div>
+  <div class="slide-footer">
+    <span>Rekova Recovery · Confidential · 2026</span>
+    <span>rekovarecovery.com</span>
+  </div>
+  <div class="slide-num">09 / 09</div>
+</div>
+
+</body>
+</html>
