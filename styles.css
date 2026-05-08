@@ -289,10 +289,10 @@ iframe.hero-video {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 177.78vh; /* 16:9 ratio */
-    height: 100vh;
-    min-width: 100%;
-    min-height: 56.25vw; /* 16:9 ratio */
+    width: 200vh;
+    height: 115vh;
+    min-width: 115%;
+    min-height: 60vw;
     transform: translate(-50%, -50%);
     pointer-events: none;
 }
