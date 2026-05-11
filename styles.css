@@ -937,6 +937,7 @@ iframe.hero-video {
 }
 @keyframes shieldFade {
     to { opacity: 0; }
+}
 
 .about-values {
     padding: 8rem 0;
@@ -1009,13 +1010,18 @@ iframe.hero-video {
     position: relative;
     border-radius: 4px;
     overflow: hidden;
-    aspect-ratio: 16/10;
+    aspect-ratio: 3/2;
     border: 1px solid var(--border);
+    background: var(--black-card);
 }
 .service-media video, .service-media img {
     width: 100%; height: 100%;
     object-fit: cover;
+    object-position: center center;
     transition: transform 0.6s var(--ease);
+}
+.service-media.portrait img {
+    object-position: center 70%;
 }
 .service-item:hover .service-media video,
 .service-item:hover .service-media img { transform: scale(1.03); }
