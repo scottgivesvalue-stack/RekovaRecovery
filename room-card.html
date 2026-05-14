@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rekova Recovery — In-Room Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @page {
+    size: 5in 7in;
+    margin: 0;
+  }
+
+  body {
+    width: 5in;
+    height: 7in;
+    background: #000;
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .card {
+    width: 5in;
+    height: 7in;
+    background: #000;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* ---- RED ACCENT BAR ---- */
+  .red-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: #D32F2F;
+    z-index: 10;
+  }
+
+  /* ---- GRID BACKGROUND ---- */
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+  }
+
+  .bg-radial {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 20%, rgba(211,47,47,0.12) 0%, transparent 55%);
+    z-index: 0;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    position: relative;
+    z-index: 2;
+    padding: 14px 22px 12px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    flex-shrink: 0;
+  }
+
+  .header img {
+    height: 28px;
+    width: auto;
+  }
+
+  .header-tag {
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #D32F2F;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* ---- HERO HEADLINE ---- */
+  .hero {
+    position: relative;
+    z-index: 2;
+    padding: 10px 22px 8px 28px;
+    flex-shrink: 0;
+  }
+
+  .eyebrow {
+    font-size: 6.5px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #D32F2F;
+    margin-bottom: 5px;
+  }
+
+  .headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+  }
+
+  .headline em {
+    color: #D32F2F;
+    font-style: italic;
+  }
+
+  .divider {
+    width: 36px;
+    height: 2px;
+    background: #D32F2F;
+    margin: 7px 0;
+  }
+
+  .subline {
+    font-size: 8px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+    max-width: 3.2in;
+  }
+
+  /* ---- KIT GRID ---- */
+  .kit-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 5px;
+    padding: 6px 22px 6px 28px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .kit-item {
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    flex-direction: column;
+    background: #0d0d0d;
+  }
+
+  .kit-img-wrap {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #0d0d0d;
+  }
+
+  .kit-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: brightness(0.9);
+  }
+
+  .kit-label {
+    background: #111;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 5px 8px 6px;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .kit-label span {
+    color: rgba(255,255,255,0.38);
+    display: block;
+    font-size: 6px;
+    font-weight: 400;
+    letter-spacing: 0.07em;
+    margin-top: 1px;
+  }
+
+  /* ---- CTA STRIP ---- */
+  .cta-strip {
+    position: relative;
+    z-index: 2;
+    background: #D32F2F;
+    padding: 9px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .cta-left .cta-label {
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 3px;
+  }
+
+  .cta-left .cta-action {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .cta-right {
+    text-align: right;
+  }
+
+  .cta-right .dial-label {
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 3px;
+  }
+
+  .cta-right .dial-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    position: relative;
+    z-index: 2;
+    padding: 7px 22px 7px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    flex-shrink: 0;
+  }
+
+  .footer-price {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+
+  .footer-price .from {
+    font-size: 7.5px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .footer-price .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .footer-price .per {
+    font-size: 7.5px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-bullets {
+    text-align: right;
+  }
+
+  .footer-bullets p {
+    font-size: 7px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+
+  .footer-bullets p::before {
+    content: '· ';
+    color: #D32F2F;
+  }
+
+  /* ---- HERO INNER LAYOUT ---- */
+  .hero-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.12in;
+  }
+
+  .hero-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .qr-block {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding-top: 2px;
+  }
+
+  #qrcode {
+    background: #fff;
+    padding: 6px;
+    border-radius: 3px;
+  }
+
+  #qrcode canvas, #qrcode img {
+    display: block;
+  }
+
+  .qr-caption {
+    font-size: 6.5px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+  }
+
+  /* ---- CTA BUTTON ---- */
+  .cta-btn {
+    display: inline-block;
+    margin-top: 8px;
+    background: #D32F2F;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="red-bar"></div>
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="rekova-logo.png" alt="Rekova Recovery">
+    <div class="header-tag">In-Room Recovery</div>
+  </div>
+
+  <!-- HEADLINE -->
+  <div class="hero">
+    <div class="eyebrow">Available Tonight · Delivered to Your Room</div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="headline">
+          Elite Recovery.<br>
+          <em>Your Room.<br>Tonight.</em>
+        </div>
+        <div class="divider"></div>
+        <p class="subline">Professional-grade recovery equipment used by elite athletes, delivered directly to your room. Compression therapy, red light panels, percussion massage, and cold plunge. No appointments. No shared facilities. Just results.</p>
+        <a class="cta-btn" href="#">Call Front Desk to Book Your Kit &rarr;</a>
+      </div>
+      <div class="qr-block">
+        <div id="qrcode"></div>
+        <span class="qr-caption">Learn More</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KIT GRID -->
+  <div class="kit-grid">
+    <div class="kit-item">
+      <div class="kit-img-wrap">
+        <img src="normatec-kit.jpg" alt="Compression Therapy">
+      </div>
+      <div class="kit-label">
+        Compression Therapy
+        <span>Normatec · Full Leg &amp; Hip</span>
+      </div>
+    </div>
+    <div class="kit-item">
+      <div class="kit-img-wrap">
+        <img src="redlight-kit.jpg" alt="Red Light Therapy">
+      </div>
+      <div class="kit-label">
+        Red Light Therapy
+        <span>Full Body Panel · Recovery Mode</span>
+      </div>
+    </div>
+    <div class="kit-item">
+      <div class="kit-img-wrap">
+        <img src="percussion-kit.jpg" alt="Percussion Massage">
+      </div>
+      <div class="kit-label">
+        Percussion Massage
+        <span>Theragun · Professional Grade</span>
+      </div>
+    </div>
+    <div class="kit-item">
+      <div class="kit-img-wrap">
+        <img src="rekova-kit.jpg" alt="Rekova Recovery Kit">
+      </div>
+      <div class="kit-label">
+        The Recovery Kit
+        <span>Pelican Case · All-In-One</span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  new QRCode(document.getElementById("qrcode"), {
+    text: "https://www.hotelcommonwealth.com/offer/the-rekovery-session/",
+    width: 108,
+    height: 108,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+</body>
+</html>
