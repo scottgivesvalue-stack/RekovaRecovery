@@ -23,7 +23,7 @@ if (!executablePath) {
 
 console.log('Using browser:', executablePath);
 
-async function generatePDF(htmlFile, outputFile, label) {
+async function generatePDF(htmlFile, outputFile, label, viewport = { width: 1100, height: 680 }) {
   console.log(`\nGenerating ${label}...`);
 
   const browser = await puppeteer.launch({
@@ -34,8 +34,7 @@ async function generatePDF(htmlFile, outputFile, label) {
 
   const page = await browser.newPage();
 
-  // Set viewport to exactly match one slide
-  await page.setViewport({ width: 1100, height: 680, deviceScaleFactor: 2 });
+  await page.setViewport({ ...viewport, deviceScaleFactor: 2 });
 
   // Load local HTML file
   const fileUrl = 'file:///' + htmlFile.replace(/\\/g, '/').replace(/ /g, '%20');
@@ -44,7 +43,6 @@ async function generatePDF(htmlFile, outputFile, label) {
   // Wait for Google Fonts + layout to settle
   await new Promise(r => setTimeout(r, 3000));
 
-  // Use the @page { size: 1100px 680px landscape; } already declared in the HTML
   await page.pdf({
     path: outputFile,
     preferCSSPageSize: true,
@@ -56,6 +54,9 @@ async function generatePDF(htmlFile, outputFile, label) {
   const sizeMB = (fs.statSync(outputFile).size / 1024 / 1024).toFixed(1);
   console.log(`Done: ${path.basename(outputFile)} (${sizeMB} MB)`);
 }
+
+// Letter-size viewport (8.5in x 11in at 96dpi)
+const letterViewport = { width: 816, height: 1056 };
 
 (async () => {
   try {
@@ -69,6 +70,27 @@ async function generatePDF(htmlFile, outputFile, label) {
       path.join(dir, 'pitch-revshare.html'),
       path.join(dir, 'Rekova-RevShare-Pitch-Deck.pdf'),
       'Revenue Share Model Deck'
+    );
+
+    await generatePDF(
+      path.join(dir, 'staff-sales-guide.html'),
+      path.join(dir, 'Rekova-Staff-Sales-Guide.pdf'),
+      'Staff Sales & Training Guide',
+      letterViewport
+    );
+
+    await generatePDF(
+      path.join(dir, 'product-usage-guide.html'),
+      path.join(dir, 'Rekova-Product-Usage-Guide.pdf'),
+      'Product Benefits & Usage Guide',
+      letterViewport
+    );
+
+    await generatePDF(
+      path.join(dir, 'onboarding-guide.html'),
+      path.join(dir, 'Rekova-Partner-Onboarding-Guide.pdf'),
+      'Partner Onboarding Guide',
+      letterViewport
     );
 
     console.log('\nAll PDFs generated successfully!');
