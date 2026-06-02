@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rekova Recovery — Partner Onboarding Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #D32F2F;
+    --red-dark: #a82020;
+    --black: #000000;
+    --card: #0f0f0f;
+    --card2: #141414;
+    --white: #ffffff;
+    --gray: rgba(255,255,255,0.55);
+    --border: rgba(255,255,255,0.09);
+  }
+
+  @page { size: 8.5in 11in; margin: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: var(--white);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ===== PAGE BASE ===== */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ===== DECORATIVE ===== */
+  .red-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--red); }
+  .bg-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .bg-radial { position: absolute; inset: 0; background: radial-gradient(ellipse at 85% 15%, rgba(211,47,47,0.12) 0%, transparent 50%); pointer-events: none; }
+  .bg-radial-2 { position: absolute; inset: 0; background: radial-gradient(ellipse at 15% 85%, rgba(211,47,47,0.08) 0%, transparent 50%); pointer-events: none; }
+  .watermark {
+    position: absolute; bottom: -55px; right: -25px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 17rem;
+    color: rgba(211,47,47,0.04); line-height: 1;
+    letter-spacing: -0.02em; pointer-events: none; user-select: none;
+  }
+  .page-num {
+    position: absolute; bottom: 0.35in; right: 0.6in;
+    font-family: 'Bebas Neue', sans-serif; font-size: 0.65rem;
+    letter-spacing: 0.22em; color: rgba(255,255,255,0.18);
+  }
+
+  /* ===== COVER ===== */
+  .cover { padding: 0.55in 0.6in 0.45in 0.75in; justify-content: space-between; }
+  .cover-header { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
+  .cover-logo-text { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 0.18em; color: var(--white); }
+  .cover-badge { background: var(--red); font-family: 'Bebas Neue', sans-serif; font-size: 0.78rem; letter-spacing: 0.18em; padding: 0.3rem 0.9rem; border-radius: 2px; color: var(--white); }
+  .cover-hero { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: center; padding-top: 0.35in; }
+  .cover-eyebrow { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+  h1.hero-title { font-family: 'Cormorant Garamond', serif; font-size: 5.0rem; font-weight: 300; line-height: 0.92; letter-spacing: -0.02em; }
+  h1.hero-title em { color: var(--red); font-style: italic; }
+  .cover-sub { font-size: 0.77rem; color: rgba(255,255,255,0.5); line-height: 1.62; margin-top: 0.2in; max-width: 4.6in; font-weight: 300; letter-spacing: 0.015em; }
+  .cover-stats { display: flex; gap: 0.12in; margin-top: 0.3in; max-width: 4.5in; }
+  .cover-stat { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 0.12in 0.1in; text-align: center; }
+  .cover-stat-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: var(--red); line-height: 1; }
+  .cover-stat-lbl { font-size: 0.52rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-top: 0.03in; line-height: 1.3; }
+  .cover-footer { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid var(--border); padding-top: 0.2in; }
+  .cover-footer p { font-size: 0.62rem; color: rgba(255,255,255,0.28); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.8; }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header {
+    position: relative; z-index: 2;
+    padding: 0.2in 0.6in 0.16in 0.75in;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-shrink: 0;
+  }
+  .page-header-logo { font-family: 'Bebas Neue', sans-serif; font-size: 0.9rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); }
+  .page-header-section { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); }
+  .page-content { position: relative; z-index: 2; padding: 0.18in 0.6in 0.2in 0.75in; flex: 1; display: flex; flex-direction: column; }
+
+  /* ===== STEP STAMP ===== */
+  .step-stamp { display: flex; align-items: flex-start; gap: 0.12in; margin-bottom: 0.04in; }
+  .step-num { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: rgba(211,47,47,0.11); line-height: 1; flex-shrink: 0; }
+  .step-body { flex: 1; }
+  .step-phase { font-size: 0.54rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--red); margin-bottom: 0.03in; }
+  .step-body h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.0rem; font-weight: 300; line-height: 1.0; letter-spacing: -0.01em; }
+  .step-body h2 em { color: var(--red); font-style: italic; }
+  .divider { width: 44px; height: 2px; background: var(--red); margin: 0.22rem 0; }
+  .intro-text { font-size: 0.66rem; color: rgba(255,255,255,0.5); margin: 0.09in 0 0.14in; line-height: 1.55; max-width: 6in; }
+
+  /* ===== TWO-COL LAYOUT ===== */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.16in; }
+  .stack { display: flex; flex-direction: column; gap: 0.1in; }
+
+  /* ===== INFO CARDS ===== */
+  .info-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 0.13in 0.16in; }
+  .info-card.accent { background: rgba(211,47,47,0.06); border-color: rgba(211,47,47,0.22); }
+  .info-card.dark { background: var(--card2); }
+  .card-label { font-size: 0.54rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 0.07in; }
+
+  /* ===== CHECK LIST ===== */
+  .check-list { list-style: none; }
+  .check-list li { display: flex; align-items: flex-start; gap: 0.08in; padding: 0.045in 0; border-bottom: 1px solid var(--border); font-size: 0.65rem; color: rgba(255,255,255,0.72); line-height: 1.5; }
+  .check-list li:last-child { border-bottom: none; }
+  .check-list li strong { color: var(--white); font-weight: 600; }
+  .check-mark { color: var(--red); font-weight: 700; flex-shrink: 0; font-size: 0.68rem; margin-top: 1px; }
+
+  /* ===== DOT LIST ===== */
+  .dot-list { list-style: none; }
+  .dot-list li { display: flex; align-items: flex-start; gap: 0.08in; padding: 0.04in 0; font-size: 0.64rem; color: rgba(255,255,255,0.68); line-height: 1.5; }
+  .dot-list li strong { color: var(--white); }
+  .dot-mark { width: 5px; height: 5px; background: var(--red); border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+
+  /* ===== NUMBERED STEPS (inline) ===== */
+  .n-step { display: flex; gap: 0.1in; align-items: flex-start; padding: 0.065in 0; border-bottom: 1px solid var(--border); }
+  .n-step:last-child { border-bottom: none; }
+  .n-circle { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--red); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'Bebas Neue', sans-serif; font-size: 0.62rem; color: var(--red); line-height: 1; }
+  .n-title { font-size: 0.67rem; font-weight: 600; color: var(--white); margin-bottom: 0.015in; }
+  .n-desc { font-size: 0.61rem; color: rgba(255,255,255,0.55); line-height: 1.45; }
+
+  /* ===== HIGHLIGHT BOX ===== */
+  .highlight-box { background: rgba(211,47,47,0.07); border: 1px solid rgba(211,47,47,0.22); border-left: 3px solid var(--red); border-radius: 0 4px 4px 0; padding: 0.1in 0.14in; }
+  .hl-label { font-size: 0.54rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 0.04in; }
+  .highlight-box p { font-size: 0.64rem; color: rgba(255,255,255,0.68); line-height: 1.55; }
+  .highlight-box p strong { color: var(--white); }
+
+  /* ===== STEP DIVIDER ===== */
+  .step-divider { border-top: 1px solid rgba(211,47,47,0.2); margin: 0.16in 0 0.13in; display: flex; align-items: center; gap: 0.1in; }
+  .step-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .step-badge { display: inline-block; font-family: 'Bebas Neue', sans-serif; font-size: 0.73rem; letter-spacing: 0.18em; background: rgba(211,47,47,0.14); border: 1px solid rgba(211,47,47,0.3); color: var(--red); padding: 0.04rem 0.45rem; border-radius: 2px; }
+
+  /* ===== POC FORM FIELDS ===== */
+  .poc-field { display: flex; align-items: center; gap: 0.1in; padding: 0.06in 0.1in; background: rgba(255,255,255,0.025); border: 1px solid var(--border); border-radius: 3px; margin-bottom: 0.06in; }
+  .poc-field:last-child { margin-bottom: 0; }
+  .poc-label { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.38); width: 1.05in; flex-shrink: 0; }
+  .poc-line { flex: 1; height: 1px; background: rgba(255,255,255,0.1); }
+
+  /* ===== KIT GRID ===== */
+  .kit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.14in; }
+  .kit-item { display: flex; align-items: flex-start; gap: 0.07in; padding: 0.05in 0; border-bottom: 1px solid var(--border); }
+  .kit-item:nth-last-child(-n+2) { border-bottom: none; }
+  .kit-dot { width: 5px; height: 5px; background: var(--red); border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+  .kit-item-body strong { font-size: 0.64rem; color: var(--white); display: block; line-height: 1.2; }
+  .kit-item-body span { font-size: 0.58rem; color: rgba(255,255,255,0.42); }
+
+  /* ===== TIMELINE (journey overview page) ===== */
+  .tl-phase-label { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(211,47,47,0.75); border-bottom: 1px solid rgba(211,47,47,0.18); padding-bottom: 0.05in; margin: 0.1in 0 0.07in; }
+  .tl-phase-label:first-child { margin-top: 0.08in; }
+  .tl-row { display: grid; grid-template-columns: 56px 82px 1fr 76px; gap: 0.1in; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 3px; padding: 0.085in 0.12in; margin-bottom: 0.06in; }
+  .tl-num { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--red); line-height: 1; }
+  .tl-phase { font-size: 0.5rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); line-height: 1.3; }
+  .tl-name { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; font-weight: 400; color: var(--white); line-height: 1.2; }
+  .tl-detail { font-size: 0.58rem; color: rgba(255,255,255,0.45); line-height: 1.35; margin-top: 0.015in; }
+  .tl-time { font-size: 0.56rem; color: rgba(255,255,255,0.32); text-align: right; font-style: italic; line-height: 1.4; }
+
+  /* ===== AGENDA ROWS ===== */
+  .agenda-row { display: flex; gap: 0.1in; align-items: flex-start; padding: 0.065in 0; border-bottom: 1px solid var(--border); }
+  .agenda-row:last-child { border-bottom: none; }
+  .agenda-time { font-family: 'Bebas Neue', sans-serif; font-size: 0.72rem; color: var(--red); flex-shrink: 0; width: 0.58in; }
+  .a-title { font-size: 0.67rem; font-weight: 600; color: var(--white); margin-bottom: 0.015in; }
+  .a-desc { font-size: 0.6rem; color: rgba(255,255,255,0.55); line-height: 1.45; }
+
+  /* ===== CHECKLIST ITEMS (go-live) ===== */
+  .cl-item { display: flex; align-items: flex-start; gap: 0.1in; padding: 0.07in 0.13in; background: var(--card); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 0.07in; }
+  .cl-item:last-child { margin-bottom: 0; }
+  .cl-box { width: 15px; height: 15px; border: 1.5px solid var(--red); border-radius: 2px; flex-shrink: 0; margin-top: 2px; }
+  .cl-title { font-size: 0.67rem; font-weight: 600; color: var(--white); margin-bottom: 0.015in; }
+  .cl-desc { font-size: 0.6rem; color: rgba(255,255,255,0.52); line-height: 1.45; }
+
+  /* ===== SUPPORT CARDS ===== */
+  .support-row { display: flex; align-items: flex-start; gap: 0.12in; padding: 0.085in 0.12in; background: var(--card2); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 0.08in; }
+  .support-row:last-child { margin-bottom: 0; }
+  .s-icon { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: var(--red); flex-shrink: 0; line-height: 1; width: 0.35in; text-align: center; }
+  .s-title { font-size: 0.67rem; font-weight: 600; color: var(--white); margin-bottom: 0.02in; }
+  .s-desc { font-size: 0.6rem; color: rgba(255,255,255,0.52); line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- ========================================================
+     PAGE 1 — COVER
+======================================================== -->
+<div class="page cover">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-radial-2"></div>
+  <div class="watermark">REKOVA</div>
+
+  <div class="cover-header">
+    <div class="cover-logo-text">REKOVA RECOVERY</div>
+    <div class="cover-badge">PARTNER GUIDE</div>
+  </div>
+
+  <div class="cover-hero">
+    <div class="cover-eyebrow">Hotel Partnership Program</div>
+    <h1 class="hero-title">Partner<br><em>Onboarding</em><br>Guide</h1>
+    <p class="cover-sub">Your complete step-by-step roadmap from signed agreement to fully operational — every phase Rekova walks through alongside you from day one to launch day and beyond.</p>
+    <div class="cover-stats">
+      <div class="cover-stat">
+        <div class="cover-stat-val">8</div>
+        <div class="cover-stat-lbl">Onboarding Steps</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-val">3</div>
+        <div class="cover-stat-lbl">Weeks to Launch</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-val">1</div>
+        <div class="cover-stat-lbl">Dedicated Rep</div>
+      </div>
+      <div class="cover-stat">
+        <div class="cover-stat-val">∞</div>
+        <div class="cover-stat-lbl">Ongoing Support</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div>
+      <p>Rekova Recovery · Hotel Partnership Program</p>
+      <p>Confidential · 2026</p>
+    </div>
+    <div style="text-align: right;">
+      <p>Your Partnership Begins Here</p>
+      <p>rekovarecovery.com</p>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================
+     PAGE 2 — JOURNEY AT A GLANCE
+======================================================== -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="watermark">GUIDE</div>
+
+  <div class="page-header">
+    <span class="page-header-logo">REKOVA RECOVERY</span>
+    <span class="page-header-section">Complete Roadmap</span>
+  </div>
+
+  <div class="page-content">
+    <div class="step-stamp">
+      <div class="step-num" style="font-size: 2.8rem; color: rgba(211,47,47,0.09);">ALL</div>
+      <div class="step-body" style="padding-top: 0.04in;">
+        <div class="step-phase">Your Complete Roadmap</div>
+        <h2>The Journey at a <em>Glance</em></h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="intro-text">From the moment your agreement is signed to the day your guests first experience Rekova Recovery — every phase, every step, every deliverable laid out in order.</p>
+
+    <div class="tl-phase-label">Phase 1 — Agreement &amp; Setup</div>
+    <div class="tl-row">
+      <div class="tl-num">01</div>
+      <div class="tl-phase">Agreement</div>
+      <div><div class="tl-name">Contract Executed</div><div class="tl-detail">Partnership agreement signed via DocuSign · billing activated · welcome email sent · dedicated rep assigned</div></div>
+      <div class="tl-time">Day 1</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-num">02</div>
+      <div class="tl-phase">Setup</div>
+      <div><div class="tl-name">Point of Contact Assigned</div><div class="tl-detail">Hotel designates primary POC · contact info submitted · communication channel opened</div></div>
+      <div class="tl-time">Day 1–2</div>
+    </div>
+
+    <div class="tl-phase-label">Phase 2 — Fulfillment</div>
+    <div class="tl-row">
+      <div class="tl-num">03</div>
+      <div class="tl-phase">Fulfillment</div>
+      <div><div class="tl-name">Kits &amp; Equipment Shipped</div><div class="tl-detail">Full 7-device recovery suite prepared, quality-checked, and shipped in branded packaging</div></div>
+      <div class="tl-time">Days 2–7</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-num">04</div>
+      <div class="tl-phase">Training</div>
+      <div><div class="tl-name">Training Materials Delivered</div><div class="tl-detail">Staff Sales &amp; Training Guide and Product Benefits &amp; Usage Guide sent digitally to the team</div></div>
+      <div class="tl-time">Day 3</div>
+    </div>
+
+    <div class="tl-phase-label">Phase 3 — Onboarding</div>
+    <div class="tl-row">
+      <div class="tl-num">05</div>
+      <div class="tl-phase">Virtual Kickoff</div>
+      <div><div class="tl-name">Onboarding Meeting</div><div class="tl-detail">60-min virtual call · pricing strategy · sales walkthrough · in-person visit date locked in</div></div>
+      <div class="tl-time">Week 1–2</div>
+    </div>
+
+    <div class="tl-phase-label">Phase 4 — In-Person Launch</div>
+    <div class="tl-row">
+      <div class="tl-num">06</div>
+      <div class="tl-phase">On-Site Visit</div>
+      <div><div class="tl-name">Rekova Flies Out to Your Property</div><div class="tl-detail">Meet management in person · property walk-through · equipment placement · branding setup</div></div>
+      <div class="tl-time">Week 2–3</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-num">07</div>
+      <div class="tl-phase">Demo Day</div>
+      <div><div class="tl-name">Live Staff Demo &amp; Training</div><div class="tl-detail">Every device demonstrated live · packaging walkthrough · role-play scenarios · staff Q&amp;A</div></div>
+      <div class="tl-time">Week 2–3</div>
+    </div>
+
+    <div class="tl-phase-label">Phase 5 — Go Live</div>
+    <div class="tl-row">
+      <div class="tl-num">08</div>
+      <div class="tl-phase">Launch</div>
+      <div><div class="tl-name">You're Live</div><div class="tl-detail">Recovery experiences fully operational · guests booking kits · performance reporting begins</div></div>
+      <div class="tl-time">Week 3</div>
+    </div>
+  </div>
+  <div class="page-num">02</div>
+</div>
+
+<!-- ========================================================
+     PAGE 3 — STEPS 01 & 02
+======================================================== -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="watermark">01</div>
+
+  <div class="page-header">
+    <span class="page-header-logo">REKOVA RECOVERY</span>
+    <span class="page-header-section">Phase 1 · Agreement &amp; Setup</span>
+  </div>
+
+  <div class="page-content">
+    <!-- STEP 01 -->
+    <div class="step-stamp">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <div class="step-phase">Phase 1 — Agreement</div>
+        <h2>Contract <em>Executed</em></h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="two-col" style="margin-top: 0.11in;">
+      <div class="stack">
+        <div class="info-card">
+          <div class="card-label">What Happens at Signing</div>
+          <ul class="check-list">
+            <li><span class="check-mark">✓</span><span>Partnership agreement fully executed via <strong>DocuSign</strong></span></li>
+            <li><span class="check-mark">✓</span><span><strong>Billing activated</strong> per your selected model — Retainer ($799/mo) or Revenue Share</span></li>
+            <li><span class="check-mark">✓</span><span>Official Rekova <strong>welcome email</strong> sent with onboarding timeline and next steps</span></li>
+            <li><span class="check-mark">✓</span><span>Dedicated <strong>account rep assigned</strong> to your property — your direct line from here forward</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Partner communication channel</strong> opened (email + text, same-day response SLA)</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="info-card accent">
+          <div class="card-label">Your Agreement Covers</div>
+          <ul class="dot-list">
+            <li><div class="dot-mark"></div><span><strong>Program model</strong> — Retainer or Revenue Share, clearly defined</span></li>
+            <li><div class="dot-mark"></div><span><strong>Term length</strong> and renewal terms</span></li>
+            <li><div class="dot-mark"></div><span><strong>Full scope of services</strong> — equipment, training, support, fly-out included</span></li>
+            <li><div class="dot-mark"></div><span><strong>Pricing rights</strong> — your hotel sets nightly kit rate (recommended $79–$129/night)</span></li>
+            <li><div class="dot-mark"></div><span><strong>Equipment use rights</strong> — all devices remain on property for contract duration</span></li>
+          </ul>
+        </div>
+        <div class="highlight-box">
+          <div class="hl-label">Day 1 Deliverable</div>
+          <p>Signed agreement copy, billing confirmation, full onboarding timeline, and account rep contact info — all delivered <strong>within 24 hours of signature.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP DIVIDER -->
+    <div class="step-divider">
+      <span class="step-badge">Step 02</span>
+      <div class="step-divider-line"></div>
+    </div>
+
+    <!-- STEP 02 -->
+    <div class="step-stamp">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <div class="step-phase">Phase 1 — Setup</div>
+        <h2>Point of <em>Contact</em> Assigned</h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="two-col" style="margin-top: 0.11in;">
+      <div class="stack">
+        <div class="info-card">
+          <div class="card-label">Who Should Be Your POC</div>
+          <ul class="dot-list">
+            <li><div class="dot-mark"></div><span><strong>Front Desk Manager</strong> or Director of Operations — ideal first choice</span></li>
+            <li><div class="dot-mark"></div><span>Someone with authority to <strong>coordinate staff scheduling</strong> and guest services</span></li>
+            <li><div class="dot-mark"></div><span>Available to <strong>receive the shipment</strong> and coordinate the in-person visit date</span></li>
+            <li><div class="dot-mark"></div><span>Will be the <strong>first escalation point</strong> for any guest kit questions or issues</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="info-card">
+          <div class="card-label">Information We Need From You</div>
+          <div class="poc-field"><span class="poc-label">Full Name</span><div class="poc-line"></div></div>
+          <div class="poc-field"><span class="poc-label">Title / Role</span><div class="poc-line"></div></div>
+          <div class="poc-field"><span class="poc-label">Email Address</span><div class="poc-line"></div></div>
+          <div class="poc-field"><span class="poc-label">Mobile / Direct</span><div class="poc-line"></div></div>
+          <div class="poc-field"><span class="poc-label">Best Time to Reach</span><div class="poc-line"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">03</div>
+</div>
+
+<!-- ========================================================
+     PAGE 4 — STEPS 03 & 04
+======================================================== -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="watermark">02</div>
+
+  <div class="page-header">
+    <span class="page-header-logo">REKOVA RECOVERY</span>
+    <span class="page-header-section">Phase 2 · Fulfillment</span>
+  </div>
+
+  <div class="page-content">
+    <!-- STEP 03 -->
+    <div class="step-stamp">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <div class="step-phase">Phase 2 — Fulfillment</div>
+        <h2>Kits &amp; Equipment <em>Shipped</em></h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="two-col" style="margin-top: 0.11in;">
+      <div class="stack">
+        <div class="info-card">
+          <div class="card-label">What's in the Recovery Kit</div>
+          <div class="kit-grid">
+            <div class="kit-item"><div class="kit-dot"></div><div class="kit-item-body"><strong>Normatec Go Boots</strong><span>Sequential compression therapy</span></div></div>
+            <div class="kit-item"><div class="kit-dot"></div><div class="kit-item-body"><strong>Red Light Therapy Panel</strong><span>Full-body photobiomodulation</span></div></div>
+            <div class="kit-item"><div class="kit-dot"></div><div class="kit-item-body"><strong>Hyperice Hypervolt</strong><span>Percussion muscle recovery</span></div></div>
+            <div class="kit-item"><div class="kit-dot"></div><div class="kit-item-body"><strong>TheraFace Mask</strong><span>LED facial recovery</span></div></div>
+            <div class="kit-item"><div class="kit-dot"></div><div class="kit-item-body"><strong>Depuffing Wand</strong><span>EMS lymphatic drainage</span></div></div>
+            <div class="kit-item"><div class="kit-dot"></div><div class="kit-item-body"><strong>Rekova Sleep Mask</strong><span>Blackout sleep optimization</span></div></div>
+            <div class="kit-item"><div class="kit-dot"></div><div class="kit-item-body"><strong>Cold Plunge Tub</strong><span>Ice bath recovery vessel</span></div></div>
+            <div class="kit-item"><div class="kit-dot"></div><div class="kit-item-body"><strong>Branded Rekova Kit Bag</strong><span>Premium guest-facing packaging</span></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="info-card accent">
+          <div class="card-label">Shipping Timeline</div>
+          <ul class="check-list">
+            <li><span class="check-mark">✓</span><span>Fulfillment begins <strong>within 48 hours</strong> of POC info received</span></li>
+            <li><span class="check-mark">✓</span><span>Estimated delivery: <strong>5–7 business days</strong> from ship date</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Tracking number</strong> sent to your POC immediately upon shipment</span></li>
+            <li><span class="check-mark">✓</span><span>All devices <strong>quality-checked and sanitized</strong> before packing</span></li>
+            <li><span class="check-mark">✓</span><span>Cold Plunge may ship <strong>separately</strong> on freight — POC will be notified</span></li>
+          </ul>
+        </div>
+        <div class="highlight-box">
+          <div class="hl-label">When Your Kit Arrives</div>
+          <p>Notify your Rekova rep immediately. Store all devices in a <strong>secure, climate-controlled area</strong>. Do not distribute to guests before the in-person staff demo in Step 07.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP DIVIDER -->
+    <div class="step-divider">
+      <span class="step-badge">Step 04</span>
+      <div class="step-divider-line"></div>
+    </div>
+
+    <!-- STEP 04 -->
+    <div class="step-stamp">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <div class="step-phase">Phase 2 — Training</div>
+        <h2>Training Materials <em>Delivered</em></h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="two-col" style="margin-top: 0.11in;">
+      <div class="info-card">
+        <div class="card-label">What Your Team Receives</div>
+        <ul class="check-list">
+          <li><span class="check-mark">✓</span><span><strong>Staff Sales &amp; Training Guide</strong> — how to pitch kits, pricing math, break-even, objection handling, performance targets</span></li>
+          <li><span class="check-mark">✓</span><span><strong>Product Benefits &amp; Usage Guide</strong> — every device explained with key benefits and step-by-step usage instructions</span></li>
+          <li><span class="check-mark">✓</span><span><strong>Guest FAQ Sheet</strong> — top guest questions answered for confident front desk conversations</span></li>
+        </ul>
+      </div>
+      <div class="info-card accent">
+        <div class="card-label">Before Your Onboarding Call</div>
+        <ul class="dot-list">
+          <li><div class="dot-mark"></div><span>Distribute guides to <strong>all front desk staff and managers</strong> who will be selling kits</span></li>
+          <li><div class="dot-mark"></div><span>Have your team <strong>review pricing strategy</strong> and break-even math in the Sales Guide</span></li>
+          <li><div class="dot-mark"></div><span>Collect <strong>staff questions and concerns</strong> to bring to the onboarding call</span></li>
+          <li><div class="dot-mark"></div><span>Decide your <strong>initial nightly kit rate</strong> — Rekova recommends starting at $79–$99/night</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">04</div>
+</div>
+
+<!-- ========================================================
+     PAGE 5 — STEP 05: ONBOARDING MEETING
+======================================================== -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-radial-2"></div>
+  <div class="watermark">05</div>
+
+  <div class="page-header">
+    <span class="page-header-logo">REKOVA RECOVERY</span>
+    <span class="page-header-section">Phase 3 · Onboarding Meeting</span>
+  </div>
+
+  <div class="page-content">
+    <div class="step-stamp">
+      <div class="step-num">05</div>
+      <div class="step-body">
+        <div class="step-phase">Phase 3 — Virtual Kickoff</div>
+        <h2>Onboarding <em>Meeting</em></h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="intro-text">This virtual kickoff is the strategic heart of your onboarding. The Rekova team walks your property leadership through everything — pricing, selling, guest experience, and what to expect on launch day — before anyone sets foot on-property.</p>
+
+    <div class="two-col">
+      <div class="stack">
+        <div class="info-card">
+          <div class="card-label">Who Should Attend</div>
+          <ul class="check-list">
+            <li><span class="check-mark">✓</span><span><strong>Hotel General Manager</strong> or Operations Director</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Designated Point of Contact</strong> (your Rekova liaison)</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Front Desk Leads</strong> — those who will pitch and present kits to guests</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Concierge or Guest Services</strong> team if applicable at your property</span></li>
+          </ul>
+        </div>
+        <div class="info-card dark">
+          <div class="card-label">Meeting Logistics</div>
+          <ul class="dot-list">
+            <li><div class="dot-mark"></div><span><strong>Duration:</strong> 60–75 minutes via Zoom or Google Meet</span></li>
+            <li><div class="dot-mark"></div><span><strong>Scheduled:</strong> Within 1–2 weeks of kit delivery confirmation</span></li>
+            <li><div class="dot-mark"></div><span><strong>Rekova Team:</strong> Account rep + senior partner or founder</span></li>
+            <li><div class="dot-mark"></div><span><strong>Recording:</strong> Full session recorded and shared within 24 hours</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="info-card accent">
+          <div class="card-label">Meeting Agenda</div>
+          <div class="agenda-row">
+            <div class="agenda-time">0:00</div>
+            <div><div class="a-title">Introductions &amp; Property Overview</div><div class="a-desc">Meet the full team · review property goals, guest profile, and revenue targets</div></div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">0:10</div>
+            <div><div class="a-title">Your Rekova Model Deep-Dive</div><div class="a-desc">Pricing model confirmed · revenue projections · break-even math reviewed together</div></div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">0:25</div>
+            <div><div class="a-title">Sales Strategy &amp; Pitch Training</div><div class="a-desc">Live walkthrough of sales guide · pitch scripts · objection handling scenarios</div></div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">0:42</div>
+            <div><div class="a-title">Guest Experience &amp; Kit Presentation</div><div class="a-desc">How kits are delivered, collected, and sanitized between guests</div></div>
+          </div>
+          <div class="agenda-row">
+            <div class="agenda-time">0:55</div>
+            <div><div class="a-title">Open Q&amp;A + In-Person Visit Scheduling</div><div class="a-desc">Answer all team questions and lock in the on-site fly-out date</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box" style="margin-top: 0.13in;">
+      <div class="hl-label">Come Prepared</div>
+      <p>Have your <strong>Sales Guide reviewed</strong> before the call · Know your <strong>target nightly rate</strong> · Have your <strong>calendar available</strong> to schedule the in-person visit · Bring <strong>property-specific questions</strong> about placement, guest demographics, and upsell positioning</p>
+    </div>
+  </div>
+  <div class="page-num">05</div>
+</div>
+
+<!-- ========================================================
+     PAGE 6 — STEP 06: FLY-OUT TO PROPERTY
+======================================================== -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="watermark">06</div>
+
+  <div class="page-header">
+    <span class="page-header-logo">REKOVA RECOVERY</span>
+    <span class="page-header-section">Phase 4 · In-Person Visit</span>
+  </div>
+
+  <div class="page-content">
+    <div class="step-stamp">
+      <div class="step-num">06</div>
+      <div class="step-body">
+        <div class="step-phase">Phase 4 — On-Site Visit</div>
+        <h2>Rekova <em>Flies Out</em> to Your Property</h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="intro-text">This is where the partnership goes from virtual to real. A Rekova representative flies directly to your hotel to meet management in person, walk the property, finalize equipment placement, and set the stage for launch day.</p>
+
+    <div class="two-col">
+      <div class="stack">
+        <div class="info-card">
+          <div class="card-label">What the Visit Covers</div>
+          <div class="n-step">
+            <div class="n-circle">1</div>
+            <div><div class="n-title">Meet Hotel Leadership</div><div class="n-desc">In-person introduction with GM, management, and key guest-facing staff</div></div>
+          </div>
+          <div class="n-step">
+            <div class="n-circle">2</div>
+            <div><div class="n-title">Full Property Walk-Through</div><div class="n-desc">Review room layout, storage options, signage placement, and kit flow logistics</div></div>
+          </div>
+          <div class="n-step">
+            <div class="n-circle">3</div>
+            <div><div class="n-title">Equipment Placement Review</div><div class="n-desc">Confirm best location for Cold Plunge setup and kit storage at front desk or bell</div></div>
+          </div>
+          <div class="n-step">
+            <div class="n-circle">4</div>
+            <div><div class="n-title">Rekova Branding &amp; Signage Setup</div><div class="n-desc">Branded materials positioned throughout the property to drive guest awareness</div></div>
+          </div>
+          <div class="n-step">
+            <div class="n-circle">5</div>
+            <div><div class="n-title">Management Strategy Session</div><div class="n-desc">Revenue targets, VIP guest positioning, upsell integration into check-in flow</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="info-card accent">
+          <div class="card-label">Visit Logistics</div>
+          <ul class="dot-list" style="margin-bottom: 0.08in;">
+            <li><div class="dot-mark"></div><span><strong>Timing:</strong> Typically 2–3 weeks after the onboarding call</span></li>
+            <li><div class="dot-mark"></div><span><strong>Duration:</strong> Full day on-site (approximately 6–8 hours)</span></li>
+            <li><div class="dot-mark"></div><span><strong>Rekova covers:</strong> All travel, accommodations, and on-site materials</span></li>
+            <li><div class="dot-mark"></div><span><strong>Hotel provides:</strong> Space for demo, access to all relevant staff</span></li>
+            <li><div class="dot-mark"></div><span><strong>Date confirmed:</strong> Locked in during the onboarding call (Step 05)</span></li>
+          </ul>
+        </div>
+        <div class="info-card dark">
+          <div class="card-label">Day-of Schedule</div>
+          <ul class="dot-list">
+            <li><div class="dot-mark"></div><span><strong>9:00 AM —</strong> Rekova arrival · full property walk-through</span></li>
+            <li><div class="dot-mark"></div><span><strong>10:30 AM —</strong> Management strategy &amp; revenue session</span></li>
+            <li><div class="dot-mark"></div><span><strong>12:00 PM —</strong> Lunch break · equipment staged for afternoon demo</span></li>
+            <li><div class="dot-mark"></div><span><strong>1:00 PM —</strong> Live staff demo begins (all devices — see Step 07)</span></li>
+            <li><div class="dot-mark"></div><span><strong>3:30 PM —</strong> Q&amp;A session · go-live checklist review · wrap</span></li>
+          </ul>
+        </div>
+        <div class="highlight-box">
+          <div class="hl-label">What to Prepare Before the Visit</div>
+          <p>Have all equipment <strong>unboxed and staged</strong> in one room · Ensure <strong>GM or senior management</strong> is present for the morning session · Notify staff so <strong>maximum team attendance</strong> at the afternoon demo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">06</div>
+</div>
+
+<!-- ========================================================
+     PAGE 7 — STEP 07: LIVE STAFF DEMO & TRAINING
+======================================================== -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-radial-2"></div>
+  <div class="watermark">07</div>
+
+  <div class="page-header">
+    <span class="page-header-logo">REKOVA RECOVERY</span>
+    <span class="page-header-section">Phase 4 · Demo Day</span>
+  </div>
+
+  <div class="page-content">
+    <div class="step-stamp">
+      <div class="step-num">07</div>
+      <div class="step-body">
+        <div class="step-phase">Phase 4 — Demo Day</div>
+        <h2>Live Staff <em>Demo</em> &amp; Training</h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="intro-text">The Rekova team conducts a hands-on, live demonstration of every device with your entire guest-facing staff — exactly how each device works, how the kit is packaged for guests, and how to confidently answer any question a guest may have.</p>
+
+    <div class="two-col">
+      <div class="stack">
+        <div class="info-card">
+          <div class="card-label">Equipment Demonstrated Live</div>
+          <ul class="check-list">
+            <li><span class="check-mark">✓</span><span><strong>Normatec Go Boots</strong> — setup, correct fit, session length, contraindications</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Red Light Therapy Panel</strong> — positioning, session timing, eye protection, key benefits</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Hyperice Hypervolt</strong> — attachment heads, muscle groups, proper pressure technique</span></li>
+            <li><span class="check-mark">✓</span><span><strong>TheraFace Mask</strong> — LED modes, application time, skin care context for guests</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Depuffing Wand</strong> — EMS settings, facial technique, how to demo for guests</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Rekova Sleep Mask</strong> — sizing, proper cleaning, premium presentation</span></li>
+            <li><span class="check-mark">✓</span><span><strong>Cold Plunge Tub</strong> — fill process, temperature setup, full safety protocol</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="info-card accent">
+          <div class="card-label">Kit Packaging Walkthrough</div>
+          <ul class="dot-list">
+            <li><div class="dot-mark"></div><span><strong>Kit assembly:</strong> How all devices are packed into the branded Rekova bag for guest delivery</span></li>
+            <li><div class="dot-mark"></div><span><strong>Kit configurations:</strong> Which items ship together and available add-on options</span></li>
+            <li><div class="dot-mark"></div><span><strong>Sanitation protocol:</strong> Full cleaning procedure required between every single guest use</span></li>
+            <li><div class="dot-mark"></div><span><strong>Storage standard:</strong> Exactly how equipment is stored and organized between rentals</span></li>
+            <li><div class="dot-mark"></div><span><strong>Guest handoff script:</strong> Word-for-word how staff presents the kit at check-in or delivery</span></li>
+          </ul>
+        </div>
+        <div class="info-card dark">
+          <div class="card-label">Role-Play Scenarios</div>
+          <ul class="dot-list">
+            <li><div class="dot-mark"></div><span>Proactive <strong>check-in pitch</strong> for athletes, couples, and wellness travelers</span></li>
+            <li><div class="dot-mark"></div><span>Answering <strong>guest questions</strong> about device safety, hygiene, and health benefits</span></li>
+            <li><div class="dot-mark"></div><span><strong>Upgrading from base kit</strong> to the full recovery suite</span></li>
+            <li><div class="dot-mark"></div><span>Handling a <strong>device question or issue</strong> calmly and professionally</span></li>
+          </ul>
+        </div>
+        <div class="highlight-box">
+          <div class="hl-label">After Demo Day</div>
+          <p>Every attending staff member receives a <strong>printed quick-reference card.</strong> Your POC gets a full demo recap document from Rekova <strong>within 48 hours.</strong> You are cleared for launch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">07</div>
+</div>
+
+<!-- ========================================================
+     PAGE 8 — STEP 08: GO LIVE
+======================================================== -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="watermark">08</div>
+
+  <div class="page-header">
+    <span class="page-header-logo">REKOVA RECOVERY</span>
+    <span class="page-header-section">Phase 5 · Go Live</span>
+  </div>
+
+  <div class="page-content">
+    <div class="step-stamp">
+      <div class="step-num">08</div>
+      <div class="step-body">
+        <div class="step-phase">Phase 5 — Launch</div>
+        <h2>You're <em>Live</em></h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="intro-text">Your hotel is now officially a Rekova Recovery partner property. Guests can book premium recovery experiences and your team is fully trained and equipped to deliver them at a luxury standard.</p>
+
+    <div class="two-col">
+      <div class="stack">
+        <div class="info-card">
+          <div class="card-label">Go-Live Checklist</div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div><div class="cl-title">All equipment staged and ready</div><div class="cl-desc">Devices sanitized, charged, and packed into kit bags at front desk or bell storage</div></div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div><div class="cl-title">Entire guest-facing team trained</div><div class="cl-desc">All staff attended demo, reviewed Sales Guide, and can pitch kits confidently</div></div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div><div class="cl-title">Nightly pricing confirmed</div><div class="cl-desc">Kit rate entered in your PMS · add-ons priced and communicated to all staff</div></div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div><div class="cl-title">Rekova featured in amenities</div><div class="cl-desc">Kit listed in room collateral, concierge menu, or digital guest guide</div></div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div><div class="cl-title">POC active and reachable</div><div class="cl-desc">Point of contact available to field guest inquiries and report first-week data to Rekova</div></div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div><div class="cl-title">Account rep notified</div><div class="cl-desc">Confirm go-live date with your rep to activate performance tracking and reporting</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="info-card accent">
+          <div class="card-label">Your First 30 Days</div>
+          <ul class="dot-list">
+            <li><div class="dot-mark"></div><span><strong>Week 1:</strong> Soft launch — staff actively pitching, tracking every kit request and rental</span></li>
+            <li><div class="dot-mark"></div><span><strong>Week 2:</strong> Check-in call with Rekova rep — review first bookings, adjust strategy</span></li>
+            <li><div class="dot-mark"></div><span><strong>Weeks 3–4:</strong> Full push — kit featured in check-in flow and digital amenities</span></li>
+            <li><div class="dot-mark"></div><span><strong>Day 30:</strong> First official performance report delivered by Rekova</span></li>
+          </ul>
+        </div>
+        <div class="info-card dark">
+          <div class="card-label">Revenue Benchmarks to Track</div>
+          <ul class="dot-list">
+            <li><div class="dot-mark"></div><span><strong>Break-even point:</strong> ~11 kit nights rented per month at $79/night</span></li>
+            <li><div class="dot-mark"></div><span><strong>Profit starts:</strong> Every rental beyond 11/month is pure revenue above cost</span></li>
+            <li><div class="dot-mark"></div><span><strong>Month 1 target:</strong> 15–20 kit nights rented</span></li>
+            <li><div class="dot-mark"></div><span><strong>Month 3 target:</strong> 30+ kit nights = $2,370+/mo above program cost</span></li>
+          </ul>
+        </div>
+        <div class="highlight-box">
+          <div class="hl-label">Rekova's Launch Commitment</div>
+          <p>Your account rep is <strong>on-call for the first two weeks post-launch.</strong> Any guest issue, device question, or sales challenge — we respond <strong>same day, guaranteed.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">08</div>
+</div>
+
+<!-- ========================================================
+     PAGE 9 — ONGOING PARTNERSHIP
+======================================================== -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-radial-2"></div>
+  <div class="watermark">REKOVA</div>
+
+  <div class="page-header">
+    <span class="page-header-logo">REKOVA RECOVERY</span>
+    <span class="page-header-section">Beyond Launch · Ongoing Partnership</span>
+  </div>
+
+  <div class="page-content">
+    <div class="step-stamp">
+      <div class="step-num" style="font-size: 3rem; color: rgba(211,47,47,0.09);">∞</div>
+      <div class="step-body" style="padding-top: 0.05in;">
+        <div class="step-phase">Beyond Launch — Always On</div>
+        <h2>Your Ongoing <em>Partnership</em></h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <p class="intro-text">Rekova is not a one-time vendor. We are a long-term operations partner invested in your revenue growth — every single month after launch, here is what your hotel gets from us.</p>
+
+    <div class="two-col">
+      <div class="stack">
+        <div class="info-card">
+          <div class="card-label">Monthly Touchpoints</div>
+          <div class="n-step">
+            <div class="n-circle">1</div>
+            <div><div class="n-title">Monthly Performance Report</div><div class="n-desc">Kit nights rented · revenue generated · break-even status · month-over-month trends</div></div>
+          </div>
+          <div class="n-step">
+            <div class="n-circle">2</div>
+            <div><div class="n-title">Check-In Call</div><div class="n-desc">30-minute call with your account rep — review numbers and refine strategy</div></div>
+          </div>
+          <div class="n-step">
+            <div class="n-circle">3</div>
+            <div><div class="n-title">Sales Coaching &amp; Refreshers</div><div class="n-desc">New pitch material, seasonal promotions, and staff motivation tactics</div></div>
+          </div>
+          <div class="n-step">
+            <div class="n-circle">4</div>
+            <div><div class="n-title">Equipment Maintenance Check</div><div class="n-desc">All devices confirmed operational · repairs or replacements arranged immediately</div></div>
+          </div>
+          <div class="n-step">
+            <div class="n-circle">5</div>
+            <div><div class="n-title">Supply Replenishment</div><div class="n-desc">Sanitation supplies and kit bag replacements restocked as needed</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="info-card accent">
+          <div class="card-label">Your Support Channels</div>
+          <div class="support-row">
+            <div class="s-icon">◈</div>
+            <div><div class="s-title">Dedicated Account Rep</div><div class="s-desc">Direct line via email and text · same-day response guaranteed on all inquiries</div></div>
+          </div>
+          <div class="support-row">
+            <div class="s-icon">⚙</div>
+            <div><div class="s-title">Equipment Support Line</div><div class="s-desc">Device issues resolved within 24 hours · replacement shipped same week if needed</div></div>
+          </div>
+          <div class="support-row">
+            <div class="s-icon">↑</div>
+            <div><div class="s-title">Revenue Growth Consulting</div><div class="s-desc">Quarterly strategy session to identify upsell opportunities and unlock higher revenue</div></div>
+          </div>
+        </div>
+        <div class="info-card dark">
+          <div class="card-label">Program Expansion Options</div>
+          <ul class="dot-list">
+            <li><div class="dot-mark"></div><span><strong>Add a second kit</strong> for high-demand periods, suite tier, or second property</span></li>
+            <li><div class="dot-mark"></div><span><strong>Spa integration</strong> — co-branded wellness experiences with your spa team</span></li>
+            <li><div class="dot-mark"></div><span><strong>Corporate wellness packages</strong> for event groups and conference guests</span></li>
+            <li><div class="dot-mark"></div><span><strong>Seasonal promotions</strong> built by Rekova specific to your market and guest profile</span></li>
+          </ul>
+        </div>
+        <div class="highlight-box">
+          <div class="hl-label">The Rekova Standard</div>
+          <p>We treat every hotel partner as if your success is our success — because it is. You will never feel like a support ticket. <strong>You have a dedicated team behind you from day one to year ten.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-num">09</div>
+</div>
+
+</body>
+</html>

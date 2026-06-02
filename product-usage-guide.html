@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rekova Recovery — Product Benefits & Usage Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #D32F2F;
+    --red-dark: #a82020;
+    --black: #000000;
+    --card: #0f0f0f;
+    --card2: #141414;
+    --white: #ffffff;
+    --gray: rgba(255,255,255,0.55);
+    --border: rgba(255,255,255,0.09);
+  }
+
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: var(--white);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ================================
+     PAGE BASE
+  ================================ */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .red-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--red);
+  }
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .bg-radial {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 85% 15%, rgba(211,47,47,0.11) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .bg-radial-bottom {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 10% 90%, rgba(211,47,47,0.07) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .watermark {
+    position: absolute;
+    bottom: -60px;
+    right: -30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18rem;
+    color: rgba(211,47,47,0.04);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    user-select: none;
+  }
+  .page-num {
+    position: absolute;
+    bottom: 0.45in;
+    right: 0.6in;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.18);
+  }
+
+  /* ================================
+     TYPOGRAPHY
+  ================================ */
+  .label-tag {
+    display: inline-block;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid var(--red);
+    padding: 0.22rem 0.75rem;
+    border-radius: 2px;
+    margin-bottom: 0.6rem;
+  }
+  h1.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5.2rem;
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  h1.hero-title em { color: var(--red); font-style: italic; }
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1.0;
+  }
+  h2.section-title em { color: var(--red); font-style: italic; }
+  .divider {
+    width: 44px;
+    height: 2px;
+    background: var(--red);
+    margin: 0.25rem 0;
+  }
+  p.body-text {
+    font-size: 0.78rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.7);
+  }
+  p.body-text strong { color: var(--white); font-weight: 600; }
+
+  /* ================================
+     COVER
+  ================================ */
+  .cover {
+    padding: 0.6in 0.6in 0.6in 0.75in;
+    justify-content: space-between;
+  }
+  .cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.18em;
+    color: var(--white);
+  }
+  .cover-badge {
+    background: var(--red);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    padding: 0.35rem 1rem;
+    border-radius: 2px;
+    color: var(--white);
+  }
+  .cover-hero {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0.8in;
+  }
+  .cover-footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.09);
+    padding-top: 0.25in;
+  }
+  .cover-footer p {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  /* ================================
+     PAGE HEADER
+  ================================ */
+  .page-header {
+    position: relative;
+    z-index: 2;
+    padding: 0.2in 0.6in 0.15in 0.75in;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .page-header-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.3);
+  }
+  .page-header-section {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .page-content {
+    position: relative;
+    z-index: 2;
+    padding: 0.18in 0.6in 0.25in 0.75in;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ================================
+     PRODUCT PAGE LAYOUT
+  ================================ */
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 0.18in;
+    margin-top: 0.1in;
+    flex: 1;
+  }
+  .product-left { display: flex; flex-direction: column; gap: 0.1in; }
+  .product-right { display: flex; flex-direction: column; gap: 0.1in; }
+
+  /* Product number stamp */
+  .product-stamp {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.12in;
+    margin-bottom: 0.03in;
+  }
+  .product-stamp-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: rgba(211,47,47,0.15);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .product-stamp-body { flex: 1; }
+  .product-stamp-body .badge {
+    font-size: 0.57rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: block;
+    margin-bottom: 0.05in;
+  }
+  .product-stamp-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.85rem;
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+  }
+  .product-stamp-body h2 em { color: var(--red); font-style: italic; }
+
+  /* What it does */
+  .what-it-does {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.14in 0.16in;
+  }
+  .what-it-does .section-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.05in;
+  }
+  .what-it-does p {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+  }
+  .what-it-does p strong { color: var(--white); }
+
+  /* Benefits list */
+  .benefits-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.14in 0.16in;
+    flex: 1;
+  }
+  .benefits-box .section-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.07in;
+  }
+  .benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.08in;
+    padding: 0.05in 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .benefit-item:last-child { border-bottom: none; }
+  .benefit-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--red);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+  .benefit-item p {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+  .benefit-item p strong { color: var(--white); font-weight: 600; }
+
+  /* How to use */
+  .how-to-use {
+    background: rgba(211,47,47,0.06);
+    border: 1px solid rgba(211,47,47,0.2);
+    border-radius: 4px;
+    padding: 0.14in 0.16in;
+    flex: 1;
+  }
+  .how-to-use .section-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.08in;
+  }
+  .step-item {
+    display: flex;
+    gap: 0.1in;
+    align-items: flex-start;
+    margin-bottom: 0.07in;
+  }
+  .step-item:last-child { margin-bottom: 0; }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--red);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 0.22in;
+  }
+  .step-text {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+  .step-text strong { color: var(--white); }
+
+  /* Stats box */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.1in;
+  }
+  .stat-box {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.14in 0.12in;
+    text-align: center;
+  }
+  .stat-box .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--red);
+    line-height: 1;
+  }
+  .stat-box .stat-label {
+    font-size: 0.58rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.4;
+    margin-top: 0.04in;
+  }
+
+  /* Session info bar */
+  .session-bar {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.14in 0.2in;
+    display: flex;
+    gap: 0.25in;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .session-info {
+    display: flex;
+    align-items: center;
+    gap: 0.08in;
+  }
+  .session-info .si-label {
+    font-size: 0.57rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+  .session-info .si-value {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .session-info .si-sep {
+    width: 1px;
+    height: 0.14in;
+    background: var(--border);
+    margin-left: 0.08in;
+  }
+
+  /* Pro tip */
+  .pro-tip {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 0 4px 4px 0;
+    padding: 0.1in 0.14in;
+  }
+  .pro-tip .pt-label {
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.04in;
+  }
+  .pro-tip p {
+    font-size: 0.63rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.55;
+  }
+  .pro-tip p strong { color: var(--white); }
+
+  /* ================================
+     COLD PLUNGE UPGRADE PAGE
+  ================================ */
+  .upgrade-hero {
+    background: rgba(211,47,47,0.08);
+    border: 1px solid rgba(211,47,47,0.3);
+    border-radius: 4px;
+    padding: 0.25in 0.3in;
+    margin-top: 0.15in;
+    position: relative;
+    overflow: hidden;
+  }
+  .upgrade-hero::before {
+    content: 'UPGRADE';
+    position: absolute;
+    right: -0.2in;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 7rem;
+    color: rgba(211,47,47,0.06);
+    letter-spacing: 0.1em;
+    pointer-events: none;
+  }
+
+  /* ================================
+     GIFT PAGE
+  ================================ */
+  .gift-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.18in;
+    margin-top: 0.18in;
+  }
+  .gift-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.22in;
+  }
+  .gift-card .gift-icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.08in;
+  }
+  .gift-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.06in;
+  }
+  .gift-card p {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.58);
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1 — COVER
+============================================================ -->
+<div class="page cover">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-radial-bottom"></div>
+  <div class="watermark">RR</div>
+
+  <div class="cover-header" style="position:relative; z-index:2;">
+    <div class="cover-logo-text">REKOVA RECOVERY</div>
+    <div class="cover-badge">GUEST & STAFF REFERENCE</div>
+  </div>
+
+  <div class="cover-hero">
+    <div class="label-tag">Product Reference Guide</div>
+    <h1 class="hero-title">
+      Know the<br>
+      <em>Products.</em><br>
+      Feel the<br>
+      Results.
+    </h1>
+    <div class="divider"></div>
+    <p class="body-text" style="max-width:4.8in; margin-top:0.1in;">
+      A complete reference for every device in the Rekova Recovery Kit —<br>
+      what it does, how it works, and how to get the most out of every session.
+    </p>
+  </div>
+
+  <div class="cover-footer">
+    <div>
+      <p>Rekova Recovery · Product Benefits & Usage Guide</p>
+      <p>7 Recovery Devices &nbsp;·&nbsp; 1 Surprise Gift &nbsp;·&nbsp; Full Recovery Suite Available</p>
+    </div>
+    <div>
+      <p style="text-align:right;">rekovarecovery.com</p>
+    </div>
+  </div>
+
+  <div class="page-num">01 / 10</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 2 — NORMATEC COMPRESSION BOOTS
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">01 — Compression Therapy</div>
+  </div>
+
+  <div class="page-content">
+    <div class="product-stamp">
+      <div class="product-stamp-num">01</div>
+      <div class="product-stamp-body">
+        <span class="badge">Compression Therapy</span>
+        <h2>Normatec<br><em>Compression Boots</em></h2>
+      </div>
+    </div>
+    <div class="divider" style="margin-top:0;"></div>
+
+    <div class="product-layout">
+      <div class="product-left">
+        <div class="what-it-does">
+          <div class="section-label">What It Does</div>
+          <p>
+            Normatec's pneumatic compression technology uses <strong>dynamic air pressure</strong> to mimic the natural muscle pump of your legs. 
+            Inflating chamber by chamber from the foot upward, the boots systematically flush metabolic waste — including lactic acid and inflammatory byproducts — 
+            out of tired muscles while simultaneously pumping <strong>fresh, oxygenated blood back in.</strong>
+            <br><br>
+            This is the same technology trusted by Olympic teams, NFL franchises, NBA squads, and elite endurance athletes around the world. 
+            What used to require a team physio can now happen in your hotel room while you relax.
+          </p>
+        </div>
+
+        <div class="benefits-box">
+          <div class="section-label">Key Benefits</div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Reduces DOMS (Delayed Onset Muscle Soreness)</strong> — less stiffness the morning after a hard training session, race, or long travel day.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Clears lactic acid buildup</strong> — accelerates the body's natural recovery process by hours, not just minutes.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Enhances lymphatic drainage</strong> — reduces swelling and inflammation in the lower limbs.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Improves circulation</strong> — great for long-haul travelers, people on their feet all day, and anyone prone to swelling.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Trusted by professionals</strong> — used by NFL, NBA, marathoners, and Olympic programs worldwide.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-right">
+        <div class="how-to-use">
+          <div class="section-label">How to Use</div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Set up on the bed or a flat surface.</strong> Lay the boot sleeves flat and connect the air hose to the control unit.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Slide your legs in.</strong> Sit comfortably with legs inserted up to the hip. You should be relaxed — lying back or reclining is ideal.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Power on and select your intensity.</strong> Start at a lower setting and increase to your comfort level. The device will run through automated cycles.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>Relax for 30–60 minutes.</strong> The boots do all the work. Use this time to read, watch TV, or pair with the red light therapy panel.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-text"><strong>Power off and remove.</strong> You should feel noticeably lighter in your legs. Drink water to support continued flush of metabolic waste.</div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num">30–60</div>
+            <div class="stat-label">min session</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">NFL</div>
+            <div class="stat-label">NBA & Olympic use</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Full</div>
+            <div class="stat-label">leg coverage</div>
+          </div>
+        </div>
+
+        <div class="pro-tip">
+          <div class="pt-label">Pro Tip</div>
+          <p>Use the compression boots <strong>within 60–90 minutes after exercise</strong> for maximum benefit. Pair with the red light therapy panel simultaneously — compression works the muscles from the outside while red light works at a cellular level from within.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">02 / 10</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 3 — RED LIGHT THERAPY PANEL
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">02 — Photobiomodulation</div>
+  </div>
+
+  <div class="page-content">
+    <div class="product-stamp">
+      <div class="product-stamp-num">02</div>
+      <div class="product-stamp-body">
+        <span class="badge">Photobiomodulation</span>
+        <h2>Red Light<br><em>Therapy Panel</em></h2>
+      </div>
+    </div>
+    <div class="divider" style="margin-top:0;"></div>
+
+    <div class="product-layout">
+      <div class="product-left">
+        <div class="what-it-does">
+          <div class="section-label">What It Does</div>
+          <p>
+            Red light therapy delivers <strong>clinical-grade wavelengths of light</strong> — 660nm (red) and 850nm (near-infrared) — directly into your muscle tissue and cells. 
+            These specific wavelengths are absorbed by the mitochondria, the energy-producing powerhouses inside every cell, 
+            <strong>stimulating ATP (cellular energy) production</strong> and accelerating the body's natural repair processes.
+            <br><br>
+            The result: reduced inflammation, faster muscle repair, improved collagen synthesis, better sleep onset, and higher next-day energy. 
+            The science is extensive — over 3,000 peer-reviewed studies support photobiomodulation therapy for recovery and performance.
+          </p>
+        </div>
+
+        <div class="benefits-box">
+          <div class="section-label">Key Benefits</div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Reduces chronic and acute inflammation</strong> — targets inflammatory pathways at a cellular level without medication.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Accelerates muscle tissue repair</strong> — ATP production speeds up the rebuilding of micro-tears from exercise.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Improves sleep quality and onset</strong> — exposure before bed regulates melatonin production and helps the body wind down naturally.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Boosts next-day energy and mental clarity</strong> — mitochondrial stimulation carries over into the following day's performance.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Supports skin health</strong> — stimulates collagen and elastin production for improved skin tone and texture.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-right">
+        <div class="how-to-use">
+          <div class="section-label">How to Use</div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Position the panel.</strong> Stand, sit, or lie 6–12 inches from the panel. The closer you are, the more intense the session. Most guests set it up on the desk or floor.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Expose the target area.</strong> Remove clothing from the area you want to treat. The light cannot penetrate fabric effectively.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Power on and select your mode.</strong> Red (660nm) for surface-level muscle and skin. Near-infrared (850nm) for deeper tissue and joints. Many sessions use both.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>Session time: 10–20 minutes.</strong> Set a timer. Move the panel or rotate your position to cover different areas if needed.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-text"><strong>Use before sleep for best results.</strong> Red light in the evening primes your body for deep, restorative sleep.</div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num">660nm</div>
+            <div class="stat-label">Red wavelength</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">850nm</div>
+            <div class="stat-label">Near-infrared</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3,000+</div>
+            <div class="stat-label">Supporting studies</div>
+          </div>
+        </div>
+
+        <div class="pro-tip">
+          <div class="pt-label">Pro Tip</div>
+          <p>Use the red light panel <strong>while wearing the compression boots</strong> for a powerful dual-modality recovery session. 
+          Near-infrared at 850nm penetrates up to 2–3cm into tissue — ideal for knee, shoulder, and hip joints. 
+          <strong>Avoid looking directly at the panel.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">03 / 10</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 4 — HYPERICE PERCUSSION GUN
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">03 — Percussive Therapy</div>
+  </div>
+
+  <div class="page-content">
+    <div class="product-stamp">
+      <div class="product-stamp-num">03</div>
+      <div class="product-stamp-body">
+        <span class="badge">Percussive Therapy</span>
+        <h2>Hyperice<br><em>Percussion Gun</em></h2>
+      </div>
+    </div>
+    <div class="divider" style="margin-top:0;"></div>
+
+    <div class="product-layout">
+      <div class="product-left">
+        <div class="what-it-does">
+          <div class="section-label">What It Does</div>
+          <p>
+            The Hyperice Hypervolt delivers <strong>rapid, high-frequency percussive vibrations</strong> directly into muscle tissue, 
+            providing deep tissue therapy that a foam roller simply cannot replicate. 
+            The percussive action breaks up adhesions and knots, activates the nervous system, 
+            increases blood flow to targeted areas, and <strong>significantly improves range of motion</strong> in minutes.
+            <br><br>
+            Equally effective as a <strong>warm-up tool</strong> to activate and prime muscles before exercise, 
+            or as a <strong>recovery tool</strong> to release tightness and speed up post-workout repair. 
+            Trusted in the training rooms of major sports franchises and Olympic programs worldwide.
+          </p>
+        </div>
+
+        <div class="benefits-box">
+          <div class="section-label">Key Benefits</div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Releases tight muscles and knots</strong> — targets specific areas of tension for immediate relief from tightness or cramping.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Breaks up adhesions and scar tissue</strong> — improves mobility in problem areas through consistent use.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Increases range of motion</strong> — pre-performance warm-up in 2 minutes that outperforms static stretching alone.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Improves local circulation</strong> — increased blood flow to treated areas accelerates healing and reduces DOMS.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Whisper-quiet motor</strong> — won't disturb neighbors. Use comfortably any time of night.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-right">
+        <div class="how-to-use">
+          <div class="section-label">How to Use</div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Select the right attachment head.</strong> Ball head for large muscles (quads, glutes, back). Bullet head for pinpoint knots. Flat head for general use. Fork head for spine/Achilles.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Start on a lower speed.</strong> Especially for first-time use. Lower speeds are more relaxing; higher speeds are more intense and stimulating.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Glide slowly over the muscle.</strong> Don't hold on one spot for more than 15–30 seconds. Move across the entire muscle belly in slow passes.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>For knots:</strong> Hold on the tight spot at low pressure until you feel it release (30–60 seconds). Don't force it — let the vibration do the work.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-text"><strong>Avoid bony areas, joints, and the spine directly.</strong> Stick to muscle tissue. 1–2 minutes per muscle group is plenty for most sessions.</div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num">1–2</div>
+            <div class="stat-label">min per muscle group</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Pre &amp;</div>
+            <div class="stat-label">post-performance</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">4</div>
+            <div class="stat-label">attachment heads</div>
+          </div>
+        </div>
+
+        <div class="pro-tip">
+          <div class="pt-label">Pro Tip</div>
+          <p>Use it <strong>before bed on tight calves, hamstrings, and upper traps.</strong> Releasing these tension points before sleep dramatically improves sleep quality — your nervous system can finally shut down. 
+          Two minutes per muscle, low speed, slow passes. You'll feel the difference immediately.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">04 / 10</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 5 — THERAFACE MASK GLO
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">04 — LED Light Therapy</div>
+  </div>
+
+  <div class="page-content">
+    <div class="product-stamp">
+      <div class="product-stamp-num">04</div>
+      <div class="product-stamp-body">
+        <span class="badge">LED Light Therapy</span>
+        <h2>TheraFace<br><em>Mask Glo</em></h2>
+      </div>
+    </div>
+    <div class="divider" style="margin-top:0;"></div>
+
+    <div class="product-layout">
+      <div class="product-left">
+        <div class="what-it-does">
+          <div class="section-label">What It Does</div>
+          <p>
+            The TheraFace Mask Glo houses <strong>504 medical-grade LEDs</strong> that deliver three distinct light therapies across the entire face simultaneously. 
+            Unlike handheld wands or small panels, full-face coverage means all areas receive equal, consistent treatment every session.
+            <br><br>
+            Backed by the <strong>largest clinical LED face mask study on the market</strong> — 80% of participants reported visible improvement in fine lines and wrinkles within 12 weeks. 
+            The mask also features <strong>VibraWave technology</strong>: gentle facial massage vibrations that relax jaw tension, stimulate circulation, and enhance product absorption.
+          </p>
+        </div>
+
+        <div class="benefits-box">
+          <div class="section-label">Key Benefits by Mode</div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Red (633nm) — Anti-Aging:</strong> Stimulates collagen and elastin production. Reduces fine lines and wrinkles. Improves skin texture and firmness. Enhances radiance.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Blue (415nm) — Acne Clearing:</strong> Kills acne-causing bacteria at the source. Reduces active breakouts and prevents new ones. Calms inflamed skin and minimizes redness.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Red + Infrared (633nm + 830nm) — Deep Renewal:</strong> Deepest penetration for cellular renewal, reduced chronic inflammation, and accelerated overall skin repair.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>VibraWave Massage:</strong> Relieves jaw tension (TMJ), stimulates circulation for natural glow, and prepares skin for deeper light absorption.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-right">
+        <div class="how-to-use">
+          <div class="section-label">How to Use</div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Cleanse your face first.</strong> Remove all makeup, sunscreen, and skincare products. Clean skin allows maximum light penetration.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Put on the mask.</strong> It's fully cordless — no cables. The adjustable strap fits all face shapes. Lie back and relax. Eyes can remain open behind the mask.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Select your mode.</strong> Red for anti-aging, Blue for acne/clarity, Red+Infrared for deep renewal. Most guests use Red or Red+Infrared before bed.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>Session time: 4–12 minutes.</strong> The mask auto-shuts off. 4 min is a quick session; 10–12 min delivers the full clinical benefit.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-text"><strong>Apply serum or moisturizer immediately after.</strong> Blood flow and cellular receptivity are elevated post-session — your skincare absorbs 2–3x better right now.</div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num">504</div>
+            <div class="stat-label">Medical-grade LEDs</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">80%</div>
+            <div class="stat-label">Reported visible results</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">4–12</div>
+            <div class="stat-label">min session</div>
+          </div>
+        </div>
+
+        <div class="pro-tip">
+          <div class="pt-label">Pro Tip</div>
+          <p>Use the mask <strong>while sitting in the compression boots during your evening recovery session.</strong> Four devices running simultaneously — compression, red light body panel, face mask, and percussion gun earlier — is the full Rekova stack. You'll look and feel noticeably different in the morning.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">05 / 10</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 6 — THERAFACE DEPUFFING WAND
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">05 — Facial Recovery</div>
+  </div>
+
+  <div class="page-content">
+    <div class="product-stamp">
+      <div class="product-stamp-num">05</div>
+      <div class="product-stamp-body">
+        <span class="badge">Facial Recovery</span>
+        <h2>TheraFace<br><em>Depuffing Wand</em></h2>
+      </div>
+    </div>
+    <div class="divider" style="margin-top:0;"></div>
+
+    <div class="product-layout">
+      <div class="product-left">
+        <div class="what-it-does">
+          <div class="section-label">What It Does</div>
+          <p>
+            The TheraFace Depuffing Wand combines <strong>cold and heat therapy</strong> in a single compact device — no freezer, no prep time required. 
+            The ergonomically contoured stainless steel tip glides smoothly along the delicate under-eye area and facial contours, 
+            delivering targeted temperature therapy to reduce puffiness, boost circulation, and drain the lymphatic system.
+            <br><br>
+            <strong>Cold mode</strong> constricts blood vessels to immediately reduce puffiness, dark circles, and inflammation. 
+            <strong>Heat mode</strong> relaxes facial muscles, opens pores, promotes lymphatic drainage, and significantly improves skin elasticity. 
+            Clinical results: <strong>89% of participants reported a more rejuvenated eye area after a single use.</strong>
+          </p>
+        </div>
+
+        <div class="benefits-box">
+          <div class="section-label">Key Benefits</div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Instantly reduces under-eye puffiness</strong> — cold constricts blood vessels and drains pooled fluid from beneath the eyes in minutes.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Diminishes dark circles</strong> — improved circulation and reduced congestion visibly brightens the under-eye area.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Promotes lymphatic drainage</strong> — heat mode stimulates the lymphatic system, reducing facial bloat and puffiness from travel, alcohol, or poor sleep.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Improves skin elasticity</strong> — regular heat use firms and tones facial skin over time.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>89% single-use results</strong> — clinically proven to enhance radiance and eye area appearance after just one session.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-right">
+        <div class="how-to-use">
+          <div class="section-label">How to Use</div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Start with clean skin.</strong> Apply a small amount of serum or facial oil (optional but enhances glide). The tip works on bare skin too.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Select Cold or Heat.</strong> Cold for morning depuffing and dark circles. Heat for evening lymphatic drainage and relaxation. Contrast (alternating) for maximum results.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Begin at the inner corner of the eye.</strong> Glide outward and upward toward the temple in slow, deliberate strokes. Follow lymphatic drainage pathways.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>Work down the jawline and neck</strong> for full lymphatic benefit. Long strokes from jaw to collarbone help move fluid out of the face.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-text"><strong>3–5 minutes total is enough.</strong> The wand charges via USB-C and includes a travel cap for protection. Store in the kit bag between sessions.</div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num">89%</div>
+            <div class="stat-label">Single-use results</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Cold +</div>
+            <div class="stat-label">Heat modes</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3–5</div>
+            <div class="stat-label">min session</div>
+          </div>
+        </div>
+
+        <div class="pro-tip">
+          <div class="pt-label">Pro Tip</div>
+          <p>This is <strong>the ultimate red-eye flight recovery tool.</strong> Use cold mode immediately upon waking — 3 minutes under the eyes before your morning meeting and the puffiness and dark circles from a disrupted night's sleep are noticeably reduced. Keep the travel cap on so the tip stays clean between sessions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">06 / 10</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 7 — THERABODY SLEEPMASK
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">06 — Sleep Optimization</div>
+  </div>
+
+  <div class="page-content">
+    <div class="product-stamp">
+      <div class="product-stamp-num">06</div>
+      <div class="product-stamp-body">
+        <span class="badge">Sleep Optimization</span>
+        <h2>Therabody<br><em>SleepMask</em></h2>
+      </div>
+    </div>
+    <div class="divider" style="margin-top:0;"></div>
+
+    <div class="product-layout">
+      <div class="product-left">
+        <div class="what-it-does">
+          <div class="section-label">What It Does</div>
+          <p>
+            Sleep is the single most powerful recovery tool available — and the Therabody SleepMask makes it <strong>science-backed and measurable.</strong>
+            The mask combines <strong>100% blackout design</strong> with three adjustable vibration patterns that work in sync with the Therabody app's guided sound therapies 
+            to help your nervous system transition from alert to asleep faster, and stay in restorative deep sleep longer.
+            <br><br>
+            This is particularly powerful in hotels, where unfamiliar light, noise, and environment disrupt the sleep cycle. 
+            Clinical results are clear: <strong>20% improvement in overall sleep satisfaction, 33% decrease in tossing and turning, and 18% improvement in staying asleep.</strong>
+          </p>
+        </div>
+
+        <div class="benefits-box">
+          <div class="section-label">Key Benefits</div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Falls asleep faster</strong> — vibration patterns mimic natural sleep-onset rhythms, calming the nervous system without medication.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>20% better sleep satisfaction</strong> — clinically measured improvement in overall sleep quality across all user groups.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>33% less tossing and turning</strong> — deeper, more stable sleep means more time in restorative slow-wave and REM sleep stages.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Blocks all light</strong> — 100% blackout for hotel environments with ambient lighting, hallway light bleed, and city glow.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Therabody app integration</strong> — guided sleep sounds and meditations sync perfectly with vibration patterns for a full sleep protocol.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-right">
+        <div class="how-to-use">
+          <div class="section-label">How to Use</div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Charge via USB-C</strong> before your first use. The mask should be charged — a full charge lasts multiple nights of use.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Download the Therabody app</strong> (optional but recommended). Navigate to the SleepMask section. Select a Sleep Mode — options range from Gentle to Deep.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Dim all lights and put on the mask</strong> 10–15 minutes before you want to be asleep. Adjust the strap for a comfortable, pressure-free fit.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>Select your vibration pattern.</strong> Inhale/Exhale is most popular — it syncs breathing with gentle pulses to naturally slow the heart rate and calm the mind.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-text"><strong>The mask auto-shuts off</strong> after the session ends. It won't disturb your sleep once the program completes. Wake up rested — even in an unfamiliar room.</div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num">20%</div>
+            <div class="stat-label">Better sleep satisfaction</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">33%</div>
+            <div class="stat-label">Less tossing & turning</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">18%</div>
+            <div class="stat-label">Improved sleep duration</div>
+          </div>
+        </div>
+
+        <div class="pro-tip">
+          <div class="pt-label">Pro Tip</div>
+          <p>Run your full recovery stack first — compression boots, red light panel, percussion gun, face mask — then finish with the SleepMask as the final step. Your nervous system will already be in a calm, recovered state. <strong>This is how elite athletes sleep on the road.</strong> The mask just ensures it happens in any hotel room.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">07 / 10</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 8 — CLEARLIGHT RED LIGHT TOWERS
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">07 — Full-Body Red Light</div>
+  </div>
+
+  <div class="page-content">
+    <div class="product-stamp">
+      <div class="product-stamp-num">07</div>
+      <div class="product-stamp-body">
+        <span class="badge">Full-Body Red Light</span>
+        <h2>Clearlight<br><em>Red Light Towers</em></h2>
+      </div>
+    </div>
+    <div class="divider" style="margin-top:0;"></div>
+
+    <div class="product-layout">
+      <div class="product-left">
+        <div class="what-it-does">
+          <div class="section-label">What It Does</div>
+          <p>
+            The Clearlight True Wave&#8482; Red Light Tower is a freestanding, full-body photobiomodulation device delivering <strong>660nm red and 850nm near-infrared wavelengths</strong> across your entire body simultaneously.
+            Unlike smaller panels that require repositioning, the tower format maximizes coverage — treating legs, torso, and upper body in a single session.
+            <br><br>
+            Clearlight&#8217;s <strong>True Wave&#8482; dual-element technology</strong> produces a consistent, medical-grade output, ensuring every session delivers the wavelength intensity needed for measurable results. Trusted in professional wellness centers and elite performance facilities worldwide.
+          </p>
+        </div>
+
+        <div class="benefits-box">
+          <div class="section-label">Key Benefits</div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Full-body simultaneous coverage</strong> — treat legs, core, and upper body without repositioning. Maximum output per session.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>660nm red light</strong> — targets surface muscle tissue, stimulates collagen synthesis, reduces inflammation, and improves skin health.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>850nm near-infrared</strong> — penetrates 2–3cm deep into joints and connective tissue for cellular-level recovery and pain relief.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>True Wave&#8482; consistency</strong> — clinical-grade output with no hot spots or dead zones, every session.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Freestanding design</strong> — no wall mounting, no setup complexity. Position anywhere in the room for immediate use.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-right">
+        <div class="how-to-use">
+          <div class="section-label">How to Use</div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Position the tower.</strong> Place the freestanding tower 6–12 inches from your body. The tower covers full height — stand or sit directly in front of it.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Remove or minimize clothing.</strong> Light cannot penetrate fabric. Bare skin is optimal for both wavelengths.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Power on.</strong> The device emits both red and near-infrared light simultaneously. The deep red glow is visible; near-infrared is not — both are active.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>Session time: 10–20 minutes.</strong> Stand or sit facing the tower. Rotate 180° halfway through to treat the back of the body. Avoid looking directly at the panel.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-text"><strong>Best used in combination.</strong> Pair with the compression boots simultaneously — compression works from outside, red light works at the cellular level from within.</div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num">660nm</div>
+            <div class="stat-label">Red wavelength</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">850nm</div>
+            <div class="stat-label">Near-infrared</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">Full</div>
+            <div class="stat-label">Body coverage</div>
+          </div>
+        </div>
+
+        <div class="pro-tip">
+          <div class="pt-label">Pro Tip</div>
+          <p>Stand in front of the Clearlight tower <strong>while wearing the compression boots</strong> for a full-body dual-modality session. Red light drives cellular energy production while compression flushes metabolic waste simultaneously — together they deliver noticeably faster recovery than either modality alone. <strong>Avoid direct eye contact with the panel.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">08 / 10</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 9 — COLD PLUNGE (FULL RECOVERY SUITE)
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">Full Recovery Suite Upgrade</div>
+  </div>
+
+  <div class="page-content">
+    <div class="product-stamp">
+      <div class="product-stamp-num" style="color:rgba(211,47,47,0.25);">+</div>
+      <div class="product-stamp-body">
+        <span class="badge" style="background:linear-gradient(135deg,#8B0000,var(--red)); color:white; border:none; padding:0.2rem 0.65rem; border-radius:2px; font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase; font-weight:700; margin-bottom:0.05in; display:inline-block;">Full Recovery Suite — Premium Upgrade</span>
+        <h2>Cold<br><em>Plunge</em></h2>
+      </div>
+    </div>
+    <div class="divider" style="margin-top:0;"></div>
+
+    <div class="upgrade-hero">
+      <p style="font-size:0.78rem; line-height:1.8; color:rgba(255,255,255,0.75); position:relative; z-index:1; max-width:5in;">
+        The ultimate recovery upgrade. Cold water immersion triggers one of the most powerful physiological recovery responses the body can experience. 
+        <strong style="color:var(--white);">Available exclusively as part of the Full Recovery Suite</strong> — our premium upgrade package that includes everything in the Standard Kit plus the Cold Plunge, 
+        delivered and set up directly in your room by our team.
+      </p>
+    </div>
+
+    <div class="product-layout" style="margin-top:0.18in;">
+      <div class="product-left">
+        <div class="what-it-does">
+          <div class="section-label">What It Does</div>
+          <p>
+            Cold water immersion at temperatures between <strong>45°F–59°F (7°C–15°C)</strong> creates an immediate and powerful systemic response. 
+            Blood vessels constrict, forcing blood from the extremities toward the core — and then vasodilate when you exit the plunge, 
+            creating a <strong>powerful circulation flush</strong> throughout the entire body.
+            <br><br>
+            Simultaneously, the cold triggers a <strong>massive release of norepinephrine</strong> — up to 300% increase — dramatically reducing systemic inflammation, 
+            boosting mood, sharpening mental clarity, and releasing the kind of natural endorphin rush that leaves you feeling 
+            sharp, energized, and genuinely alive.
+          </p>
+        </div>
+
+        <div class="benefits-box">
+          <div class="section-label">Key Benefits</div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Dramatically reduces muscle inflammation & soreness</strong> — the most rapid and effective acute inflammation reduction available without medication.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Boosts circulation and lymphatic drainage</strong> — the vasoconstriction/vasodilation cycle is nature's most powerful circulatory flush.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Improves mental clarity and mood</strong> — norepinephrine release clears brain fog and elevates mood for hours post-plunge.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Releases natural endorphins</strong> — the post-plunge feeling of calm energy and euphoria is a well-documented physiological response.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-dot"></div>
+            <p><strong>Increases stress resilience</strong> — regular cold exposure builds the parasympathetic nervous system's ability to regulate stress response.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-right">
+        <div class="how-to-use">
+          <div class="section-label">How to Use</div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div class="step-text"><strong>Our team sets it up in your room.</strong> You don't need to do anything. It arrives ready to use at your preferred temperature.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div class="step-text"><strong>Start at 55–59°F if you're new to cold plunging.</strong> More experienced users can go 45–50°F. The cold is the point — don't turn it up.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div class="step-text"><strong>Control your breathing first.</strong> Before entering, take 3–5 slow, deep diaphragmatic breaths. This primes your nervous system and prevents the gasp response.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div class="step-text"><strong>Immerse to the shoulders if possible.</strong> Start with 2–3 minutes for beginners. Build toward 10–15 minutes over multiple sessions. Focus on slow, controlled breathing throughout.</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div class="step-text"><strong>Do NOT immediately warm up with a hot shower.</strong> Let the body warm naturally for 5–10 minutes first — this is when the norepinephrine and endorphin release peaks.</div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-num">300%</div>
+            <div class="stat-label">Norepinephrine increase</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">2–15</div>
+            <div class="stat-label">min sessions</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">In-Room</div>
+            <div class="stat-label">Setup included</div>
+          </div>
+        </div>
+
+        <div class="pro-tip">
+          <div class="pt-label">Pro Tip — The Full Stack</div>
+          <p>The elite recovery protocol: <strong>Cold Plunge → Compression Boots + Red Light Panel → Percussion Gun → Face Mask → Depuffing Wand → SleepMask.</strong> 
+          Cold plunge first to flush inflammation and spike norepinephrine. Then layer the recovery devices. Finish with the sleep mask. This is what the pros do — and now it's in your room.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">09 / 10</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 10 — THE SURPRISE GIFT + STACK GUIDE
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-radial-bottom"></div>
+  <div class="watermark">RR</div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">The Rekova Touch & Recovery Stack</div>
+  </div>
+
+  <div class="page-content">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.25in; flex:1;">
+
+      <!-- LEFT: Surprise Gift -->
+      <div>
+        <div class="label-tag">The Rekova Touch</div>
+        <h2 class="section-title" style="font-size:2.2rem;">A Surprise Gift.<br><em>Just for You.</em></h2>
+        <div class="divider"></div>
+        <p class="body-text" style="margin-top:0.08in; margin-bottom:0.15in; font-size:0.7rem;">
+          Every Rekova kit includes a <strong>curated local gift</strong> — our way of welcoming you to the city 
+          and making your stay more than just a great night's sleep. The gift changes by city, season, and occasion.
+        </p>
+
+        <div class="gift-grid" style="grid-template-columns:1fr 1fr; gap:0.12in; margin-top:0;">
+          <div class="gift-card">
+            <div class="gift-icon">🍽️</div>
+            <h4>Restaurant Vouchers</h4>
+            <p>Discount or complimentary dining at partner restaurants near your hotel.</p>
+          </div>
+          <div class="gift-card">
+            <div class="gift-icon">🎟️</div>
+            <h4>Event Tickets</h4>
+            <p>Local sporting events, concerts, or cultural experiences in the city.</p>
+          </div>
+          <div class="gift-card">
+            <div class="gift-icon">🛁</div>
+            <h4>Spa Credits</h4>
+            <p>Partnered day-spa access to extend your recovery experience beyond the room.</p>
+          </div>
+          <div class="gift-card">
+            <div class="gift-icon">🏙️</div>
+            <h4>City Experiences</h4>
+            <p>Guided tours, local tastings, and unique city-specific surprises. Always genuine.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Recovery Stack Guide -->
+      <div>
+        <div class="label-tag">Recommended Protocol</div>
+        <h2 class="section-title" style="font-size:2.2rem;">The Recovery<br><em>Stack.</em></h2>
+        <div class="divider"></div>
+        <p class="body-text" style="margin-top:0.08in; margin-bottom:0.15in; font-size:0.7rem;">
+          For maximum benefit, <strong>use the devices in this order.</strong> Each builds on the last — from reducing acute inflammation to optimizing deep sleep.
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:0.09in;">
+          <div style="display:flex; align-items:center; gap:0.12in; background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.1in 0.15in;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--red); flex-shrink:0; width:0.22in;">1</div>
+            <div>
+              <div style="font-size:0.62rem; font-weight:700; color:var(--white);">Cold Plunge <span style="color:rgba(211,47,47,0.7); font-size:0.58rem; font-weight:400;">(Full Suite only)</span></div>
+              <div style="font-size:0.62rem; color:rgba(255,255,255,0.45);">5–15 min · Flush inflammation · Spike norepinephrine</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.12in; background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.1in 0.15in;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--red); flex-shrink:0; width:0.22in;">2</div>
+            <div>
+              <div style="font-size:0.62rem; font-weight:700; color:var(--white);">Percussion Gun</div>
+              <div style="font-size:0.62rem; color:rgba(255,255,255,0.45);">5–10 min · Release tight muscles · Improve circulation</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.12in; background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.1in 0.15in;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--red); flex-shrink:0; width:0.22in;">3</div>
+            <div>
+              <div style="font-size:0.62rem; font-weight:700; color:var(--white);">Compression Boots + Clearlight Red Light Towers <span style="color:rgba(255,255,255,0.4); font-weight:400;">(simultaneously)</span></div>
+              <div style="font-size:0.62rem; color:rgba(255,255,255,0.45);">30–45 min · Deep recovery · Cellular repair</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.12in; background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.1in 0.15in;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--red); flex-shrink:0; width:0.22in;">4</div>
+            <div>
+              <div style="font-size:0.62rem; font-weight:700; color:var(--white);">TheraFace Mask Glo</div>
+              <div style="font-size:0.62rem; color:rgba(255,255,255,0.45);">8–12 min · Skin renewal · Collagen stimulation</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.12in; background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.1in 0.15in;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--red); flex-shrink:0; width:0.22in;">5</div>
+            <div>
+              <div style="font-size:0.62rem; font-weight:700; color:var(--white);">TheraFace Depuffing Wand</div>
+              <div style="font-size:0.62rem; color:rgba(255,255,255,0.45);">3–5 min · Reduce puffiness · Lymphatic drainage</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.12in; background:rgba(211,47,47,0.1); border:1px solid rgba(211,47,47,0.3); border-radius:4px; padding:0.1in 0.15in;">
+            <div style="font-family:'Bebas Neue',sans-serif; font-size:1.2rem; color:var(--red); flex-shrink:0; width:0.22in;">6</div>
+            <div>
+              <div style="font-size:0.62rem; font-weight:700; color:var(--white);">Therabody SleepMask</div>
+              <div style="font-size:0.62rem; color:rgba(255,255,255,0.45);">10–20 min · Fall asleep faster · Stay asleep longer</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:0.12in; padding:0.12in 0.18in; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px;">
+          <p style="font-size:0.65rem; color:rgba(255,255,255,0.5); line-height:1.6; font-style:italic;">
+            Total time: ~60–75 minutes. You don't have to do everything — even two or three devices used consistently will produce results you notice.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">10 / 10</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rekova Recovery — Staff Sales & Training Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #D32F2F;
+    --red-dark: #a82020;
+    --black: #000000;
+    --card: #0f0f0f;
+    --card2: #141414;
+    --white: #ffffff;
+    --gray: rgba(255,255,255,0.55);
+    --gray-light: rgba(255,255,255,0.08);
+    --border: rgba(255,255,255,0.09);
+  }
+
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #1a1a1a;
+    color: var(--white);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ================================
+     PAGE / SLIDE BASE
+  ================================ */
+  .page {
+    width: 8.5in;
+    height: 11in;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .red-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--red);
+  }
+  .red-bar-top {
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 5px;
+    background: var(--red);
+  }
+  .red-bar-bottom {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 5px;
+    background: var(--red);
+  }
+
+  .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 54px 54px;
+    pointer-events: none;
+  }
+  .bg-radial {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 85% 15%, rgba(211,47,47,0.12) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .bg-radial-2 {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 15% 85%, rgba(211,47,47,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .watermark {
+    position: absolute;
+    bottom: -60px;
+    right: -30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18rem;
+    color: rgba(211,47,47,0.04);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .page-num {
+    position: absolute;
+    bottom: 0.45in;
+    right: 0.6in;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.18);
+  }
+
+  /* ================================
+     TYPOGRAPHY
+  ================================ */
+  .display { font-family: 'Cormorant Garamond', serif; }
+  .caps { font-family: 'Bebas Neue', sans-serif; }
+
+  .label-tag {
+    display: inline-block;
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid var(--red);
+    padding: 0.22rem 0.75rem;
+    border-radius: 2px;
+    margin-bottom: 0.6rem;
+  }
+  .label-tag.white {
+    color: rgba(255,255,255,0.45);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  h1.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5.2rem;
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  h1.hero-title em { color: var(--red); font-style: italic; }
+
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.3rem;
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+  }
+  h2.section-title em { color: var(--red); font-style: italic; }
+
+  h3.card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    line-height: 1.1;
+  }
+
+  .divider {
+    width: 44px;
+    height: 2px;
+    background: var(--red);
+    margin: 0.3rem 0;
+  }
+
+  p.body-text {
+    font-size: 0.78rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.7);
+  }
+  p.body-text strong { color: var(--white); font-weight: 600; }
+
+  /* ================================
+     COVER PAGE
+  ================================ */
+  .cover {
+    padding: 0.6in 0.6in 0.6in 0.75in;
+    justify-content: space-between;
+  }
+  .cover-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .cover-header img {
+    height: 30px;
+    width: auto;
+  }
+  .cover-logo-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.18em;
+    color: var(--white);
+  }
+  .cover-hero {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 0.8in;
+  }
+  .cover-footer {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid var(--border);
+    padding-top: 0.25in;
+  }
+  .cover-footer-left p {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+  .cover-badge {
+    background: var(--red);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    padding: 0.35rem 1rem;
+    border-radius: 2px;
+    color: var(--white);
+  }
+
+  /* ================================
+     INNER PAGE LAYOUT
+  ================================ */
+  .page-header {
+    position: relative;
+    z-index: 2;
+    padding: 0.22in 0.6in 0.18in 0.75in;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .page-header-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.3);
+  }
+  .page-header-section {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .page-content {
+    position: relative;
+    z-index: 2;
+    padding: 0.22in 0.6in 0.3in 0.75in;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ================================
+     KIT OVERVIEW GRID
+  ================================ */
+  .kit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.18in;
+    margin-top: 0.25in;
+  }
+  .kit-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.25in 0.22in;
+    position: relative;
+    overflow: hidden;
+  }
+  .kit-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--red);
+  }
+  .kit-card-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    margin-bottom: 0.1in;
+  }
+  .kit-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.08in;
+    line-height: 1.15;
+  }
+  .kit-card p {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.58);
+    line-height: 1.6;
+  }
+
+  /* ================================
+     PRICING TABLE
+  ================================ */
+  .price-hero-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2in;
+    margin-top: 0.2in;
+  }
+  .price-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.3in;
+    position: relative;
+    overflow: hidden;
+  }
+  .price-box.accent {
+    background: var(--red);
+    border-color: var(--red);
+  }
+  .price-box .price-label {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.1in;
+  }
+  .price-box.accent .price-label { color: rgba(255,255,255,0.7); }
+  .price-box .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.8rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--white);
+  }
+  .price-box .price-unit {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 0.05in;
+  }
+  .price-box.accent .price-unit { color: rgba(255,255,255,0.7); }
+  .price-box .price-note {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 0.12in;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .price-box.accent .price-note { color: rgba(255,255,255,0.8); }
+
+  .breakeven-table {
+    margin-top: 0.2in;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .breakeven-table .table-header {
+    background: rgba(211,47,47,0.15);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    padding: 0.12in 0.2in;
+  }
+  .breakeven-table .table-header span {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .breakeven-table .table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    padding: 0.12in 0.2in;
+    border-bottom: 1px solid var(--border);
+  }
+  .breakeven-table .table-row:last-child { border-bottom: none; }
+  .breakeven-table .table-row:nth-child(even) { background: rgba(255,255,255,0.02); }
+  .breakeven-table .table-row span {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.75);
+    display: flex;
+    align-items: center;
+  }
+  .breakeven-table .table-row span.green { color: #4CAF50; font-weight: 600; }
+  .breakeven-table .table-row span.red-text { color: var(--red); font-weight: 600; }
+  .breakeven-table .table-row span.gold { color: #FFD700; font-weight: 700; }
+  .breakeven-table .table-row span.bold { color: var(--white); font-weight: 600; }
+
+  /* ================================
+     SALES STRATEGY
+  ================================ */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.14in;
+    margin-top: 0.12in;
+  }
+  .strategy-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.16in;
+  }
+  .strategy-card h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.08in;
+    color: var(--white);
+  }
+  .strategy-card h4 em { color: var(--red); font-style: italic; }
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+  }
+  .bullet-list li {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.55;
+    padding: 0.04in 0 0.04in 0.18in;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--red);
+    font-size: 0.65rem;
+  }
+  .bullet-list li strong { color: var(--white); font-weight: 600; }
+
+  /* ================================
+     OBJECTION HANDLING
+  ================================ */
+  .objection-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 0.09in;
+    overflow: hidden;
+  }
+  .objection-q {
+    background: rgba(211,47,47,0.08);
+    padding: 0.08in 0.18in;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+  }
+  .objection-q::before {
+    content: '"';
+    color: var(--red);
+    margin-right: 0.04in;
+  }
+  .objection-q::after {
+    content: '"';
+    color: var(--red);
+    margin-left: 0.02in;
+  }
+  .objection-a {
+    padding: 0.08in 0.18in;
+    font-size: 0.67rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.55;
+  }
+  .objection-a strong { color: var(--white); }
+
+  /* ================================
+     CALL SCRIPT
+  ================================ */
+  .script-box {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.16in 0.22in;
+    margin-top: 0.1in;
+    position: relative;
+  }
+  .script-box::before {
+    content: '"';
+    position: absolute;
+    top: 0.1in;
+    left: 0.15in;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: rgba(211,47,47,0.15);
+    line-height: 1;
+  }
+  .script-box p {
+    font-size: 0.7rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.75);
+    font-style: italic;
+    padding-left: 0.1in;
+  }
+  .script-box p strong { color: var(--white); font-style: normal; }
+
+  /* ================================
+     PRODUCT QUICK REF
+  ================================ */
+  .quick-ref-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.1in;
+    margin-top: 0.12in;
+  }
+  .quick-ref-item {
+    display: flex;
+    gap: 0.12in;
+    align-items: flex-start;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.13in;
+  }
+  .quick-ref-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: rgba(211,47,47,0.3);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 0.4in;
+  }
+  .quick-ref-body h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.04in;
+  }
+  .quick-ref-body .badge {
+    font-size: 0.57rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.06in;
+    display: block;
+  }
+  .quick-ref-body p {
+    font-size: 0.64rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+
+  /* ================================
+     PERFORMANCE TARGETS
+  ================================ */
+  .targets-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.14in;
+    margin-top: 0.14in;
+  }
+  .target-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.18in 0.16in;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .target-card.highlight {
+    background: rgba(211,47,47,0.08);
+    border-color: rgba(211,47,47,0.4);
+  }
+  .target-card.best {
+    background: rgba(211,47,47,0.15);
+    border-color: var(--red);
+  }
+  .target-card .target-nights {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--white);
+    line-height: 1;
+  }
+  .target-card.best .target-nights { color: var(--red); }
+  .target-card .target-label {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 0.1in;
+  }
+  .target-card .target-revenue {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-top: 0.08in;
+  }
+  .target-card .target-profit {
+    font-size: 0.68rem;
+    margin-top: 0.04in;
+  }
+  .target-card .target-profit.pos { color: #4CAF50; font-weight: 600; }
+  .target-card .target-profit.breakeven { color: rgba(255,255,255,0.5); }
+  .target-card .tier-badge {
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 0.1in;
+    color: rgba(255,255,255,0.4);
+  }
+  .target-card.highlight .tier-badge { color: rgba(255,165,0,0.85); }
+  .target-card.best .tier-badge { color: var(--red); }
+
+  .breakeven-callout {
+    background: rgba(211,47,47,0.1);
+    border: 1px solid rgba(211,47,47,0.35);
+    border-radius: 4px;
+    padding: 0.18in 0.25in;
+    margin-top: 0.18in;
+    display: flex;
+    align-items: center;
+    gap: 0.2in;
+  }
+  .breakeven-callout .callout-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.2rem;
+    color: var(--red);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .breakeven-callout .callout-text h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.05in;
+  }
+  .breakeven-callout .callout-text p {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.55;
+  }
+
+  /* ================================
+     DO'S & DON'TS
+  ================================ */
+  .dos-donts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2in;
+    margin-top: 0.2in;
+  }
+  .do-col { }
+  .dont-col { }
+  .col-header {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.18em;
+    padding: 0.1in 0.18in;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 0;
+  }
+  .col-header.do { background: rgba(76,175,80,0.2); color: #4CAF50; }
+  .col-header.dont { background: rgba(211,47,47,0.2); color: var(--red); }
+
+  .col-items {
+    border: 1px solid var(--border);
+    border-radius: 0 0 4px 4px;
+  }
+  .col-item {
+    padding: 0.07in 0.15in;
+    font-size: 0.67rem;
+    color: rgba(255,255,255,0.7);
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.08in;
+  }
+  .col-item:last-child { border-bottom: none; }
+  .col-item .icon { flex-shrink: 0; margin-top: 1px; }
+  .col-item.do-item .icon { color: #4CAF50; }
+  .col-item.dont-item .icon { color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     PAGE 1 — COVER
+============================================================ -->
+<div class="page cover">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-radial-2"></div>
+  <div class="watermark">RR</div>
+
+  <div class="cover-header">
+    <div class="cover-logo-text">REKOVA RECOVERY</div>
+    <div class="cover-badge">INTERNAL — STAFF USE ONLY</div>
+  </div>
+
+  <div class="cover-hero">
+    <div class="label-tag">Sales & Training Guide</div>
+    <h1 class="hero-title">
+      Sell the<br>
+      <em>Recovery.</em><br>
+      Close the<br>Night.
+    </h1>
+    <div class="divider"></div>
+    <p class="body-text" style="max-width:4.5in; margin-top:0.1in;">
+      Everything your team needs to confidently present, pitch, and sell<br>
+      the Rekova Recovery Kit to guests — from pricing to talking points.
+    </p>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-footer-left">
+      <p>Rekova Recovery · Staff Training Document</p>
+      <p>Recommended Pricing: $79 / Night &nbsp;·&nbsp; Kit Cost: $799 / Month</p>
+    </div>
+    <div style="text-align:right;">
+      <p style="font-size:0.6rem; color:rgba(255,255,255,0.25); letter-spacing:0.1em; text-transform:uppercase;">Do not distribute externally</p>
+    </div>
+  </div>
+
+  <div class="page-num">01 / 07</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 2 — WHAT'S IN THE KIT
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">What's in the Kit</div>
+  </div>
+
+  <div class="page-content">
+    <div class="label-tag">The Standard Kit</div>
+    <h2 class="section-title">Six Tools.<br><em>One Kit.</em></h2>
+    <div class="divider"></div>
+    <p class="body-text" style="margin-top:0.08in; max-width:6.5in;">
+      Every Rekova Standard Kit includes six professional-grade recovery devices — each used by elite athletes, Olympic programs, and performance-focused professionals worldwide. 
+      <strong>Plus a curated local surprise gift.</strong> 
+      The Full Recovery Suite adds a Cold Plunge for guests who want the ultimate experience.
+    </p>
+
+    <div class="kit-grid">
+      <div class="kit-card">
+        <div class="kit-card-num">01 — COMPRESSION THERAPY</div>
+        <h4>Normatec<br>Compression Boots</h4>
+        <p>Pneumatic compression technology that flushes lactic acid, reduces DOMS, and delivers oxygenated blood back to tired muscles. 30–60 min sessions. Used by NFL &amp; NBA teams.</p>
+      </div>
+      <div class="kit-card">
+        <div class="kit-card-num">02 — PHOTOBIOMODULATION</div>
+        <h4>Red Light<br>Therapy Panel</h4>
+        <p>Clinical-grade 660nm + 850nm wavelengths penetrate deep into muscle tissue, reducing inflammation and accelerating cellular repair. 10–20 min sessions. Improves sleep quality.</p>
+      </div>
+      <div class="kit-card">
+        <div class="kit-card-num">03 — PERCUSSIVE THERAPY</div>
+        <h4>Hyperice<br>Percussion Gun</h4>
+        <p>Deep tissue percussive therapy from Hyperice Hypervolt. Releases tight muscles, breaks up adhesions, improves range of motion. Pre &amp; post-performance. Whisper-quiet motor.</p>
+      </div>
+      <div class="kit-card">
+        <div class="kit-card-num">04 — LED LIGHT THERAPY</div>
+        <h4>TheraFace<br>Mask Glo</h4>
+        <p>504 medical-grade LEDs — red, blue, and infrared — in one cordless full-face device. Reduces fine lines, clears skin, promotes deep cellular renewal. 4–12 min sessions.</p>
+      </div>
+      <div class="kit-card">
+        <div class="kit-card-num">05 — FACIAL RECOVERY</div>
+        <h4>TheraFace<br>Depuffing Wand</h4>
+        <p>Cold + heat therapy in one compact wand. No freezer required. Reduces under-eye puffiness and dark circles. 89% of users saw results after a single use. USB-C charging.</p>
+      </div>
+      <div class="kit-card">
+        <div class="kit-card-num">06 — SLEEP OPTIMIZATION</div>
+        <h4>Therabody<br>SleepMask</h4>
+        <p>100% blackout + 3 adjustable vibration patterns synced to the Therabody app. Proven: 20% improvement in sleep satisfaction, 33% less tossing &amp; turning. Perfect for hotel stays.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:0.18in; padding:0.15in 0.2in; background:rgba(211,47,47,0.08); border:1px solid rgba(211,47,47,0.25); border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <span style="font-size:0.6rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--red);">Full Recovery Suite Upgrade</span>
+        <p style="font-size:0.7rem; color:rgba(255,255,255,0.65); margin-top:0.04in;">Includes everything above <strong style="color:white;">+ Cold Plunge</strong> — delivered &amp; set up directly in the guest's room. Available as a premium add-on.</p>
+      </div>
+      <div style="text-align:right; flex-shrink:0; padding-left:0.2in;">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:300; color:var(--red);">+ Cold Plunge</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">02 / 07</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 3 — PRICING & BREAK-EVEN
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">Pricing & Break-Even</div>
+  </div>
+
+  <div class="page-content">
+    <div class="label-tag">The Numbers</div>
+    <h2 class="section-title">Know Your<br><em>Math.</em></h2>
+    <div class="divider"></div>
+
+    <div class="price-hero-row">
+      <div class="price-box accent">
+        <div class="price-label">Your Kit Cost (Monthly)</div>
+        <div class="price-amount">$799</div>
+        <div class="price-unit">per month, per kit</div>
+        <div class="price-note">This is your fixed cost. The kit is yours for the full month — unlimited nights available to sell.</div>
+      </div>
+      <div class="price-box">
+        <div class="price-label">Recommended Guest Price</div>
+        <div class="price-amount">$79</div>
+        <div class="price-unit">per night — <em>up to your discretion</em></div>
+        <div class="price-note">$79/night is the suggested starting rate. You can price higher based on your property tier, demand, and guest profile. Some properties charge $99–$129/night.</div>
+      </div>
+    </div>
+
+    <div class="breakeven-callout" style="margin-top:0.2in;">
+      <div class="callout-num">11</div>
+      <div class="callout-text">
+        <h4>Nights to Break Even at $79/Night</h4>
+        <p>Sell the kit just 11 nights in a month and your cost is covered. Every booking after that is <strong style="color:#4CAF50;">pure profit</strong>. A 30-night month at $79/night generates <strong style="color:white;">$2,370 in revenue</strong> on a $799 investment.</p>
+      </div>
+    </div>
+
+    <p style="font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:0.22in; margin-bottom:0.1in;">Monthly Performance Scenarios — At $79/Night</p>
+
+    <div class="breakeven-table">
+      <div class="table-header">
+        <span>Scenario</span>
+        <span>Nights Sold</span>
+        <span>Revenue</span>
+        <span>Kit Cost</span>
+        <span>Net Profit</span>
+      </div>
+      <div class="table-row">
+        <span class="bold">Break-Even</span>
+        <span>11 nights</span>
+        <span>$869</span>
+        <span>$799</span>
+        <span class="red-text">+$70</span>
+      </div>
+      <div class="table-row">
+        <span class="bold">Good Month</span>
+        <span>15 nights</span>
+        <span>$1,185</span>
+        <span>$799</span>
+        <span class="green">+$386</span>
+      </div>
+      <div class="table-row">
+        <span class="bold">Strong Month</span>
+        <span>20 nights</span>
+        <span>$1,580</span>
+        <span>$799</span>
+        <span class="green">+$781</span>
+      </div>
+      <div class="table-row">
+        <span class="bold">Exceptional Month</span>
+        <span>25 nights</span>
+        <span>$1,975</span>
+        <span>$799</span>
+        <span class="green">+$1,176</span>
+      </div>
+      <div class="table-row">
+        <span class="bold">Fully Booked</span>
+        <span>30 nights</span>
+        <span>$2,370</span>
+        <span>$799</span>
+        <span class="gold">+$1,571</span>
+      </div>
+    </div>
+
+    <p style="font-size:0.65rem; color:rgba(255,255,255,0.35); margin-top:0.12in; font-style:italic;">
+      * Pricing is at your discretion. Higher nightly rates ($99–$129) reduce the nights needed to break even and increase margin significantly.
+      At $99/night: break-even at just 9 nights. At $129/night: break-even at just 7 nights.
+    </p>
+  </div>
+
+  <div class="page-num">03 / 07</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 4 — PERFORMANCE TARGETS
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">Performance Targets</div>
+  </div>
+
+  <div class="page-content">
+    <div class="label-tag">Tiered Goals</div>
+    <h2 class="section-title">Set Your<br><em>Target.</em></h2>
+    <div class="divider"></div>
+    <p class="body-text" style="margin-top:0.08in; max-width:6in;">
+      Use these tiers to guide your monthly goals. The kit is already yours — <strong>every booking is progress toward profit.</strong>
+      Push for Platinum and the math becomes very compelling.
+    </p>
+
+    <div class="targets-row">
+      <div class="target-card">
+        <div class="target-label">Bronze Tier</div>
+        <div class="target-nights">11</div>
+        <div style="font-size:0.6rem; color:rgba(255,255,255,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-top:0.04in;">nights / month</div>
+        <div class="target-revenue">$869</div>
+        <div style="font-size:0.6rem; color:rgba(255,255,255,0.35); margin-bottom:0.06in;">Total Revenue</div>
+        <div class="target-profit breakeven">Covered. Zero loss.</div>
+        <div class="tier-badge">Break-Even Minimum</div>
+      </div>
+      <div class="target-card highlight">
+        <div class="target-label">Silver Tier</div>
+        <div class="target-nights">20</div>
+        <div style="font-size:0.6rem; color:rgba(255,255,255,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-top:0.04in;">nights / month</div>
+        <div class="target-revenue">$1,580</div>
+        <div style="font-size:0.6rem; color:rgba(255,255,255,0.35); margin-bottom:0.06in;">Total Revenue</div>
+        <div class="target-profit pos">+$781 Profit</div>
+        <div class="tier-badge">Solid Performance</div>
+      </div>
+      <div class="target-card best">
+        <div class="target-label">Platinum Tier</div>
+        <div class="target-nights">30</div>
+        <div style="font-size:0.6rem; color:rgba(255,255,255,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-top:0.04in;">nights / month</div>
+        <div class="target-revenue">$2,370</div>
+        <div style="font-size:0.6rem; color:rgba(255,255,255,0.35); margin-bottom:0.06in;">Total Revenue</div>
+        <div class="target-profit pos">+$1,571 Profit</div>
+        <div class="tier-badge">Full Occupancy Goal</div>
+      </div>
+    </div>
+
+    <div style="margin-top:0.22in; display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.18in;">
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.22in 0.2in; border-top:3px solid var(--red);">
+        <div style="font-size:0.58rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.08in;">At $99 / Night</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:var(--white); margin-bottom:0.04in;">9 nights</div>
+        <div style="font-size:0.68rem; color:rgba(255,255,255,0.55); line-height:1.55;">to break even.<br>20 nights = <strong style="color:#4CAF50;">+$1,181 profit.</strong></div>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.22in 0.2in; border-top:3px solid var(--red);">
+        <div style="font-size:0.58rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.08in;">At $119 / Night</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:var(--white); margin-bottom:0.04in;">7 nights</div>
+        <div style="font-size:0.68rem; color:rgba(255,255,255,0.55); line-height:1.55;">to break even.<br>20 nights = <strong style="color:#4CAF50;">+$1,581 profit.</strong></div>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.22in 0.2in; border-top:3px solid var(--red);">
+        <div style="font-size:0.58rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:0.08in;">At $129 / Night</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:400; color:var(--white); margin-bottom:0.04in;">7 nights</div>
+        <div style="font-size:0.68rem; color:rgba(255,255,255,0.55); line-height:1.55;">to break even.<br>20 nights = <strong style="color:#4CAF50;">+$1,781 profit.</strong></div>
+      </div>
+    </div>
+
+    <div style="margin-top:0.18in; padding:0.15in 0.22in; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:4px;">
+      <p style="font-size:0.7rem; color:rgba(255,255,255,0.55); line-height:1.7;">
+        <strong style="color:var(--white);">Pro Tip:</strong> Most high-performance properties charge $99–$129/night. Don't be afraid to price up. 
+        Guests who book a $300+/night hotel room are already comfortable spending on comfort. 
+        Frame it as a <em>premium amenity add-on</em>, not an extra charge.
+      </p>
+    </div>
+  </div>
+
+  <div class="page-num">04 / 07</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 5 — HOW TO SELL
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">How to Sell</div>
+  </div>
+
+  <div class="page-content">
+    <div class="label-tag">Sales Playbook</div>
+    <h2 class="section-title">Target. Pitch.<br><em>Close.</em></h2>
+    <div class="divider"></div>
+
+    <div class="strategy-grid">
+      <div class="strategy-card">
+        <h4>Who to <em>Target</em></h4>
+        <ul class="bullet-list">
+          <li><strong>Athletes & Sports Teams</strong> — marathon runners, triathletes, tournament players, coaches. These guests know the products and will be excited.</li>
+          <li><strong>Corporate Travelers</strong> — frequent flyers dealing with jet lag, fatigue, and stress. The sleep mask and red light alone sell themselves.</li>
+          <li><strong>Wedding Parties & Event Guests</strong> — long days, late nights, tired faces. The depuffing wand and facial mask are perfect.</li>
+          <li><strong>Fitness Professionals</strong> — personal trainers, yoga instructors, gym owners staying in town for events or certs.</li>
+          <li><strong>Luxury Leisure Travelers</strong> — guests who want premium experiences and are already paying for upgrades.</li>
+        </ul>
+      </div>
+
+      <div class="strategy-card">
+        <h4>When to <em>Pitch</em></h4>
+        <ul class="bullet-list">
+          <li><strong>At Check-In</strong> — most effective moment. Ask about their trip purpose. "Are you here for an event or training?" opens the door naturally.</li>
+          <li><strong>At Booking Confirmation</strong> — include Rekova as an optional add-on in confirmation emails or upsell calls.</li>
+          <li><strong>After the Gym</strong> — if you see a guest heading to/from the fitness center, that's your moment.</li>
+          <li><strong>Concierge Desk</strong> — display the room card and kit information prominently at concierge/front desk.</li>
+          <li><strong>Multi-Night Stays</strong> — guests staying 3+ nights are prime targets. The $79 nightly rate feels low relative to their extended stay.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-size:0.65rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-top:0.22in; margin-bottom:0.1in;">The Pitch — What to Say</p>
+
+    <div class="script-box">
+      <p>
+        <strong>"Good evening — are you here for an event or training this week?"</strong> [Pause for answer.]
+        <br><br>
+        <strong>"Perfect — we actually have something that might be exactly what you need."</strong>
+        We offer the Rekova Recovery Kit — it's a full in-room recovery suite with professional-grade compression boots, red light therapy, a percussion gun, LED face mask, a depuffing wand, and a science-backed sleep mask. It's the same gear used by NFL and Olympic athletes, delivered right to your room.
+        <br><br>
+        <strong>"It's $79 for tonight — and honestly, guests tell us it's the best sleep they've had in months."</strong>
+        Would you like me to have it set up before you get back to your room?
+      </p>
+    </div>
+
+    <div style="margin-top:0.15in; padding:0.15in 0.22in; background:rgba(211,47,47,0.07); border:1px solid rgba(211,47,47,0.2); border-radius:4px;">
+      <p style="font-size:0.7rem; color:rgba(255,255,255,0.65); line-height:1.7;">
+        <strong style="color:var(--white);">Key Message:</strong> You're not selling a gadget — you're selling recovery, results, and a better stay. 
+        Guests don't need to know what <em>photobiomodulation</em> means. They need to know: 
+        <strong style="color:var(--white);">"You'll wake up feeling better tomorrow."</strong>
+      </p>
+    </div>
+  </div>
+
+  <div class="page-num">05 / 07</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 6 — OBJECTIONS & DO'S AND DON'TS
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">Objection Handling</div>
+  </div>
+
+  <div class="page-content">
+    <div class="label-tag">Handle Every No</div>
+    <h2 class="section-title">Objections &<br><em>Answers.</em></h2>
+    <div class="divider"></div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.18in; margin-top:0.18in;">
+      <div>
+        <div class="objection-item">
+          <div class="objection-q">I don't need all that stuff.</div>
+          <div class="objection-a">That's totally fine — you can use whatever you want. Most guests end up using the percussion gun and sleep mask every night. Even one device makes the stay better. It's $79 for all six tools, not just one.</div>
+        </div>
+        <div class="objection-item">
+          <div class="objection-q">Is it clean / sanitary?</div>
+          <div class="objection-a"><strong>Absolutely.</strong> Every kit is fully sanitized and inspected between every use. We follow a strict cleaning protocol — same standards used by professional sports teams.</div>
+        </div>
+        <div class="objection-item">
+          <div class="objection-q">I don't know how to use any of this.</div>
+          <div class="objection-a">No experience needed. Every device is intuitive, and each kit includes an instruction card. The compression boots? You just sit back and press one button. We'll walk you through anything you need.</div>
+        </div>
+      </div>
+      <div>
+        <div class="objection-item">
+          <div class="objection-q">$79 seems like a lot.</div>
+          <div class="objection-a"><strong>Consider what you're getting:</strong> six professional recovery devices that would cost $3,000+ to buy. Gyms charge $60–$120 for a single compression session. You're getting a full suite in your room for one night.</div>
+        </div>
+        <div class="objection-item">
+          <div class="objection-q">I'm only here for one night.</div>
+          <div class="objection-a">That's actually the perfect time. Red-eye tonight? Compression boots and the sleep mask will have you recovered and sharp tomorrow. One night is all you need to feel the difference.</div>
+        </div>
+        <div class="objection-item">
+          <div class="objection-q">I'll just use the hotel gym.</div>
+          <div class="objection-a">The gym is great for working out — this is for recovering <em>from</em> working out. They're complementary. Most of our guests use the kit after the gym. Better sleep, faster recovery, better results tomorrow.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dos-donts">
+      <div class="do-col">
+        <div class="col-header do">✓ &nbsp; DO</div>
+        <div class="col-items">
+          <div class="col-item do-item"><span class="icon">✓</span><span>Ask about their trip purpose before pitching — personalize the pitch</span></div>
+          <div class="col-item do-item"><span class="icon">✓</span><span>Mention specific products that fit their situation (athlete → boots, traveler → sleep mask)</span></div>
+          <div class="col-item do-item"><span class="icon">✓</span><span>Emphasize ease of use and in-room convenience</span></div>
+          <div class="col-item do-item"><span class="icon">✓</span><span>Offer to set the kit up before they return to the room</span></div>
+        </div>
+      </div>
+      <div class="dont-col">
+        <div class="col-header dont">✗ &nbsp; DON'T</div>
+        <div class="col-items">
+          <div class="col-item dont-item"><span class="icon">✗</span><span>Don't use technical terms like "photobiomodulation" — say "red light therapy that helps your muscles recover"</span></div>
+          <div class="col-item dont-item"><span class="icon">✗</span><span>Don't pitch every guest the same way — read the room</span></div>
+          <div class="col-item dont-item"><span class="icon">✗</span><span>Don't push too hard — one follow-up is enough if they decline</span></div>
+          <div class="col-item dont-item"><span class="icon">✗</span><span>Don't forget to mention the surprise local gift that's included</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">06 / 07</div>
+</div>
+
+
+<!-- ============================================================
+     PAGE 7 — QUICK REFERENCE & CLOSING
+============================================================ -->
+<div class="page">
+  <div class="red-bar"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-radial"></div>
+  <div class="watermark">RR</div>
+
+  <div class="page-header">
+    <div class="page-header-logo">REKOVA RECOVERY</div>
+    <div class="page-header-section">Quick Reference</div>
+  </div>
+
+  <div class="page-content">
+    <div class="label-tag">Cheat Sheet</div>
+    <h2 class="section-title">Product<br><em>Quick Reference.</em></h2>
+    <div class="divider"></div>
+    <p class="body-text" style="margin-top:0.06in; margin-bottom:0.06in;">Know the one-line pitch for each product. Use these when a guest asks "what's in it?"</p>
+
+    <div class="quick-ref-grid">
+      <div class="quick-ref-item">
+        <div class="quick-ref-num">01</div>
+        <div class="quick-ref-body">
+          <span class="badge">Compression Therapy</span>
+          <h4>Normatec Compression Boots</h4>
+          <p>"Like a deep-tissue massage for your legs — automatically. Flushes soreness out and pumps fresh blood back in. Used by the NFL."</p>
+        </div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-num">02</div>
+        <div class="quick-ref-body">
+          <span class="badge">Photobiomodulation</span>
+          <h4>Red Light Therapy Panel</h4>
+          <p>"Red and infrared light that penetrates deep into your muscles and helps your cells recover faster. Also improves sleep. 10 minutes before bed."</p>
+        </div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-num">03</div>
+        <div class="quick-ref-body">
+          <span class="badge">Percussive Therapy</span>
+          <h4>Hyperice Percussion Gun</h4>
+          <p>"The same massage gun used in professional locker rooms. Hit any tight muscle and it loosens up in minutes. Works before or after activity."</p>
+        </div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-num">04</div>
+        <div class="quick-ref-body">
+          <span class="badge">LED Light Therapy</span>
+          <h4>TheraFace Mask Glo</h4>
+          <p>"A full-face LED mask with 504 lights. Red for anti-aging, blue for skin clarity. 8 minutes before bed and your skin looks noticeably fresher in the morning."</p>
+        </div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-num">05</div>
+        <div class="quick-ref-body">
+          <span class="badge">Facial Recovery</span>
+          <h4>TheraFace Depuffing Wand</h4>
+          <p>"Hot and cold therapy for under your eyes. Perfect after a red-eye or a long event day. 89% of people see results immediately — puffiness gone."</p>
+        </div>
+      </div>
+      <div class="quick-ref-item">
+        <div class="quick-ref-num">06</div>
+        <div class="quick-ref-body">
+          <span class="badge">Sleep Optimization</span>
+          <h4>Therabody SleepMask</h4>
+          <p>"Blocks all light and uses gentle vibration + guided audio to help you fall asleep faster. Clinically proven — 20% better sleep quality. Game-changer for hotel stays."</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:0.18in; display:grid; grid-template-columns:1fr 2fr; gap:0.2in; align-items:stretch;">
+      <div style="background:var(--red); border-radius:4px; padding:0.22in; display:flex; flex-direction:column; justify-content:center;">
+        <div style="font-size:0.58rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:0.08in;">Don't Forget</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:400; line-height:1.2; color:var(--white);">The Surprise<br><em>Gift</em> is included.</div>
+        <p style="font-size:0.65rem; color:rgba(255,255,255,0.75); margin-top:0.08in; line-height:1.55;">Every kit includes a curated local gift — restaurant vouchers, event tickets, or a city experience. Mention it. It closes the sale.</p>
+      </div>
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:4px; padding:0.22in; display:flex; flex-direction:column; justify-content:center;">
+        <div style="font-size:0.58rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:0.08in;">The Closing Line</div>
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:300; line-height:1.35; color:var(--white); font-style:italic; margin-bottom:0.1in;">"It's $79 for a full recovery suite in your room — and you'll wake up tomorrow feeling like a different person. Want me to have it ready for you?"</div>
+        <p style="font-size:0.67rem; color:rgba(255,255,255,0.45); line-height:1.55;">Always end with a yes/no question. Make it easy to say yes. The kit does the rest.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">07 / 07</div>
+</div>
+
+</body>
+</html>
